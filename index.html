@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anthropic IPO Dashboard — S-1 analysis</title>
+<meta name="description" content="Pre-IPO analysis dashboard of Anthropic, PBC's Form S-1 (Oct 26, 2026): revenue, costs, compute commitments, people, product, competition, risks, forecast and sensitivity. Open data.">
+<meta name="author" content="Andrea Calcagno">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --font-anthropic-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+ --font-anthropic-serif:"Source Serif 4",Georgia,serif;
+ --color-bg:#fcfcfd;--color-panel:#ffffff;--color-fg:#1b1c1f;--color-fg-muted:#6b6f76;--color-border-line:#e6e7ea;
+ --color-ok:#1f8a4c;--color-warn:#c27c0e;--color-bad:#d1453b;
+ --cds-chart-muted:#c9ccd3;--cds-chart-grid:#eef0f2;--cds-chart-axis:#d5d7dc;--cds-chart-reference:#8a8f98;--cds-chart-status-critical:#d1453b;
+ --cds-surface-popover:#ffffff;--cds-border:#e2e4e8;--cds-shadow-popover:0 6px 20px rgba(0,0,0,.08);--cds-text-secondary:#6b6f76;--cds-dur-slow:300ms;
+ --c1:#5E6AD2;--c2:#3b82c4;--c3:#2aa198;--c4:#d97757;--c5:#9b6bd3;--c6:#c2a20e;--c7:#d1568c;--c8:#6b8e23;
+}
+@media (prefers-color-scheme:dark){:root{
+ --color-bg:#0f1011;--color-panel:#16171a;--color-fg:#e6e7ea;--color-fg-muted:#8a8f98;--color-border-line:#26282c;
+ --color-ok:#4cc38a;--color-warn:#e5a33a;--color-bad:#ef6b5f;
+ --cds-chart-muted:#3a3d43;--cds-chart-grid:#1f2124;--cds-chart-axis:#2e3035;--cds-chart-reference:#6b6f76;--cds-chart-status-critical:#ef6b5f;
+ --cds-surface-popover:#1c1d21;--cds-border:#2e3035;--cds-shadow-popover:0 6px 20px rgba(0,0,0,.4);--cds-text-secondary:#8a8f98;
+ --c1:#7c86e6;--c2:#5aa2e0;--c3:#3cc0b4;--c4:#e8916f;--c5:#b28ae6;--c6:#d9bb3c;--c7:#e573a5;--c8:#8fb34a;}}
+html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
+.dash-skeleton{color:transparent!important;background:var(--cds-chart-grid);border-radius:4px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+#dash-root{--dash-gutter:0}
+.lx{--acc:#5E6AD2;--acc-soft:color-mix(in srgb,#5E6AD2 14%,transparent);--line:var(--color-border-line);--mut:var(--color-fg-muted);
+ font-family:var(--font-anthropic-sans);color:var(--color-fg);font-size:13.5px;letter-spacing:-0.005em;display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.lx *{box-sizing:border-box}
+.lx-side{position:sticky;top:0;align-self:start;height:100vh;border-right:1px solid var(--line);padding:18px 12px;display:flex;flex-direction:column;gap:2px;overflow:auto}
+.lx-brand{display:flex;align-items:center;gap:8px;padding:4px 8px 14px;font-weight:600;font-size:13px}
+.lx-brand i{width:18px;height:18px;border-radius:5px;background:var(--acc);display:inline-block}
+.lx-grp{font-size:11px;color:var(--mut);padding:12px 8px 4px;text-transform:uppercase;letter-spacing:.06em}
+.lx-side a{display:flex;gap:10px;align-items:center;padding:5px 8px;border-radius:6px;color:var(--mut);text-decoration:none;font-size:13px;line-height:1.3}
+.lx-side a span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;opacity:.7;width:16px}
+.lx-side a:hover{background:var(--acc-soft);color:var(--color-fg)}
+.lx-side a.on{background:var(--acc-soft);color:var(--color-fg)}
+.lx-credit{margin-top:auto;padding:14px 8px 4px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut);line-height:1.5}
+.lx-credit a{color:var(--color-fg);text-decoration:none;font-weight:500;padding:0;display:inline}
+.lx-credit a:hover{color:var(--acc);background:none}
+.lx-main{min-width:0;padding:22px clamp(16px,3vw,40px) 60px}
+.lx-wrap{max-width:1180px;margin-inline:auto}
+.lx-crumb{font-size:12px;color:var(--mut);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lx-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin:10px 0 6px}
+.lx h1{font-family:var(--font-anthropic-sans);font-weight:600;font-size:26px;letter-spacing:-0.02em;margin:0}
+.lx-by{font-size:12px;color:var(--mut);white-space:nowrap}
+.lx-by a{color:var(--color-fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.lx-by a:hover{color:var(--acc);border-color:var(--acc)}
+.lx-pills{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+.lx-pill{font-size:11.5px;padding:2px 9px;border:1px solid var(--line);border-radius:999px;color:var(--mut);display:inline-flex;align-items:center;gap:6px}
+.lx-pill b{width:6px;height:6px;border-radius:50%;background:var(--acc);display:inline-block}
+.lx-pill.warn b{background:var(--color-warn)}
+.lx-take{font-size:14.5px;line-height:1.6;max-width:86ch;margin:0 0 26px;color:var(--color-fg)}
+.lx-take b{font-weight:600}
+.lx section{margin:0 0 44px;scroll-margin-top:16px}
+.lx-sh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.lx-sh span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--acc)}
+.lx h2{font-size:17px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.lx .note2{color:var(--mut);font-size:12.5px;margin:0 0 14px;max-width:96ch;line-height:1.55}
+.lx .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5rem),1fr));border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:12px;background:var(--color-panel)}
+.lx .tile{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0}
+.lx .tile .l{font-size:11.5px;color:var(--mut);line-height:1.35;min-height:2.7em}
+.lx .tile .v{font-size:22px;font-weight:600;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;margin-top:6px}
+.lx .tile .n{font-size:11.5px;color:var(--mut);margin-top:3px}
+.lx .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr));gap:12px}
+.lx .card{background:var(--color-panel);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.lx .card h3{font-size:13.5px;font-weight:600;margin:0 0 3px}
+.lx .card .note{font-size:12px;color:var(--mut);margin:0 0 12px;line-height:1.45}
+.lx .chart{position:relative;min-height:230px}
+.lx .tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:8px;box-shadow:var(--cds-shadow-popover);padding:6px 9px;font-size:11.5px;opacity:0;white-space:nowrap;z-index:3}
+.lx .tip .t{color:var(--cds-text-secondary);margin-bottom:2px}
+.lx .tbl{overflow:auto}
+.lx table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.lx th,.lx td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.lx th:first-child,.lx td:first-child{text-align:left}
+.lx th{color:var(--mut);font-weight:500;font-size:11.5px}
+.lx tr:hover td{background:var(--acc-soft)}
+.lx td.wrap{white-space:normal;text-align:left;color:var(--mut);min-width:14rem}
+.lx td.l{text-align:left}
+.lx .neg{color:var(--color-bad)} .lx .pos{color:var(--color-ok)}
+.lx ul.pts{margin:0;padding-left:1.05em;font-size:13px;line-height:1.55}
+.lx ul.pts li{margin-bottom:5px}
+.lx .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut);margin-bottom:10px}
+.lx .tag b{width:6px;height:6px;border-radius:50%;display:inline-block;background:var(--mut)}
+.lx .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin-bottom:6px}
+.lx .legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+.lx .fail{display:flex;align-items:center;justify-content:center;gap:6px;min-height:200px;color:var(--mut);font-size:12px}
+.lx .fail:before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+.lx [data-dash-source-state=empty]{color:transparent}
+.lx [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.lx .prio{display:grid;gap:8px}
+.lx .prow{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,14rem);gap:14px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--color-panel)}
+.lx .prow .rk{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--acc);border:1px solid var(--acc);border-radius:6px;text-align:center;padding:2px 0}
+.lx .prow h4{margin:0 0 3px;font-size:13.5px;font-weight:600}
+.lx .prow p{margin:0;color:var(--mut);font-size:12.5px;line-height:1.5}
+.lx .prow .k{font-size:11.5px;color:var(--mut)} .lx .prow .k b{display:block;color:var(--color-fg);font-weight:500;margin-top:2px}
+.lx .thr{display:inline-flex;align-items:center;gap:5px} .lx .thr:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mut)}
+.lx .thr.High:before{background:var(--color-bad)} .lx .thr.Medium:before{background:var(--color-warn)}
+.lx .heat td.cell{text-align:center;font-weight:500}
+.lx .foot{font-size:11.5px;color:var(--mut);line-height:1.55;border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lx .foot a{color:var(--color-fg);text-decoration:none;border-bottom:1px solid var(--line)}
+@media (max-width:900px){.lx{grid-template-columns:1fr}.lx-side{position:sticky;height:auto;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px;z-index:6;background:var(--color-bg)}.lx-brand,.lx-grp,.lx-credit{display:none}.lx-side a{white-space:nowrap}.lx .prow{grid-template-columns:30px minmax(0,1fr)}.lx .prow .k{grid-column:2}}
+</style>
+
+<div class="lx">
+<nav class="lx-side" id="lx-nav">
+ <div class="lx-brand"><i></i>IPO Research</div>
+ <div class="lx-grp">Performance</div>
+ <a href="#s-overview"><span>01</span>Overview</a>
+ <a href="#s-revenue"><span>02</span>Revenue & mix</a>
+ <a href="#s-costs"><span>03</span>Costs & margins</a>
+ <a href="#s-invest"><span>04</span>Investment & capital</a>
+ <a href="#s-people"><span>05</span>People</a>
+ <div class="lx-grp">Strategy</div>
+ <a href="#s-strategy"><span>06</span>Strategy & governance</a>
+ <a href="#s-product"><span>07</span>Product priorities</a>
+ <a href="#s-competition"><span>08</span>Competition</a>
+ <a href="#s-risks"><span>09</span>Risks</a>
+ <div class="lx-grp">Future</div>
+ <a href="#s-forecast"><span>10</span>Forecast</a>
+ <a href="#s-sensitivity"><span>11</span>Sensitivity</a>
+ <a href="#s-valuation"><span>12</span>Valuation & verdict</a>
+ <div class="lx-credit">Designed by<br><a href="https://www.linkedin.com/in/andreacalcagno/" target="_blank" rel="noopener">Andrea Calcagno ↗</a></div>
+</nav>
+
+<main class="lx-main"><div class="lx-wrap">
+<div class="lx-crumb">IPO Research <span>›</span> 2026 pipeline <span>›</span> Anthropic, PBC</div>
+<div class="lx-head">
+ <h1 id="top">Anthropic S-1 — pre-IPO analysis</h1>
+ <div class="lx-by">Designed by <a href="https://www.linkedin.com/in/andreacalcagno/" target="_blank" rel="noopener">Andrea Calcagno</a></div>
+</div>
+<div class="lx-pills">
+ <span class="lx-pill"><b></b>S-1 filed Oct 26, 2026</span>
+ <span class="lx-pill"><b></b>Nasdaq · ANT</span>
+ <span class="lx-pill"><b></b>Goldman Sachs · Morgan Stanley</span>
+ <span class="lx-pill warn"><b></b>Price range and Q3 not yet filed</span>
+</div>
+<p class="lx-take">Revenue reached <b class="dash-skeleton" data-source="kpis" data-field="value" data-where="key=rev_h1">—</b> in H1 2026 with a first GAAP operating profit of <b class="dash-skeleton" data-source="kpis" data-field="value" data-where="key=q2_op_income">—</b> in Q2 and net revenue retention near <b class="dash-skeleton" data-source="kpis" data-field="value" data-where="key=nrr">—</b>. The equity story turns on whether that growth can carry <b class="dash-skeleton" data-source="commit_tot" data-field="all">—</b> of compute commitments; the base-case forecast reaches <b class="dash-skeleton" data-source="forecast_tbl" data-field="fy28" data-where="scenario=Base">—</b> of revenue in FY2028.</p>
+
+<!-- 01 OVERVIEW -->
+<section id="s-overview">
+<div class="lx-sh"><span>01</span><h2>Overview</h2></div>
+<p class="note2">The six numbers a pre-IPO book is built around: scale, growth, profitability, expansion, liquidity and current run-rate.</p>
+<div class="tiles" data-fetchpriority="high">
+ <div class="tile"><div class="l">H1 2026 revenue</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=rev_h1">—</div><div class="n">vs <span data-source="annual_pl" data-field="revenue" data-where="period=H1 2025">—</span> in H1 2025</div></div>
+ <div class="tile"><div class="l">Q2 2026 revenue growth YoY</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=q2_growth">—</div><div class="n">compute grew far slower</div></div>
+ <div class="tile"><div class="l">Q2 2026 GAAP operating income</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=q2_op_income">—</div><div class="n">first profitable quarter filed</div></div>
+ <div class="tile"><div class="l">Net revenue retention, Sep 2026</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=nrr">—</div><div class="n">excl. Pro and Max plans</div></div>
+ <div class="tile"><div class="l">Cash + short-term investments</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=cash">—</div><div class="n">of <span data-source="kpis" data-field="value" data-where="key=raised">—</span> raised</div></div>
+ <div class="tile"><div class="l">Q3 2026 revenue (reported)</div><div class="v dash-skeleton" data-source="kpis" data-field="value" data-where="key=q3_rev">—</div><div class="n">annualized <span data-source="q3_annualized" data-field="value">—</span></div></div>
+</div>
+</section>
+
+<!-- 02 REVENUE -->
+<section id="s-revenue">
+<div class="lx-sh"><span>02</span><h2>Revenue & mix</h2></div>
+<p class="note2">Revenue is booked gross, including sales billed through AWS, Google Cloud and Azure marketplaces; partner fees sit in sales, marketing and partnerships. The S-1 does not split revenue by product or geography.</p>
+<div class="grid">
+ <div class="card"><h3>Quarterly revenue</h3><p class="note">US$. Q3 2026 is the figure reported to investors (lighter bar). Labels show growth on the prior quarter.</p><div class="chart" id="c-qrev" data-source="quarterly q_growth"></div></div>
+ <div class="card"><h3>Annual and half-year revenue</h3><p class="note">US$; H1 periods for comparison.</p><div class="chart" id="c-arev" data-source="annual_pl"></div></div>
+ <div class="card"><h3>Pricing model mix, H1 2026</h3><p class="note">Consumption is metered in tokens; subscriptions are fixed monthly plans.</p><div class="chart" id="c-pmix" data-source="pricing_mix" style="min-height:110px"></div></div>
+ <div class="card"><h3>Share through cloud marketplaces</h3><p class="note">Revenue share (solid) and share of net receivables (dashed).</p><div class="chart" id="c-chan" data-source="channel_mix"></div></div>
+ <div class="card"><h3>Customers with $100K+ TTM revenue</h3><p class="note">The S-1's measure of enterprise adoption. Log scale.</p><div class="chart" id="c-cust" data-source="customers"></div></div>
+ <div class="card"><h3>Depth and concentration</h3><p class="note">Counts as of Sep 30, 2026; shares for the nine months to Sep 30.</p>
+  <div class="tiles" style="margin:0">
+   <div class="tile"><div class="l">Customers > $1M TTM</div><div class="v" data-source="kpis" data-field="value" data-where="key=c1m">—</div></div>
+   <div class="tile"><div class="l">Customers > $10M TTM</div><div class="v" data-source="kpis" data-field="value" data-where="key=c10m">—</div></div>
+   <div class="tile"><div class="l">Top-5 customers' share</div><div class="v" data-source="kpis" data-field="value" data-where="key=top5">—</div></div>
+   <div class="tile"><div class="l">Q3 revenue from models &lt; 6 months old</div><div class="v" data-source="kpis" data-field="value" data-where="key=new_model_rev">—</div></div>
+  </div></div>
+</div>
+</section>
+
+<!-- 03 COSTS -->
+<section id="s-costs">
+<div class="lx-sh"><span>03</span><h2>Costs & margins</h2></div>
+<p class="note2">Expenses are reported by nature with no cost-of-revenue line, so there is no gross margin. Compute and infrastructure is one pool across training, inference, research and internal use.</p>
+<div class="grid">
+ <div class="card"><h3>Cost mix as % of revenue</h3><p class="note">Operating-expense lines stacked against each period's revenue; dashed line is breakeven.</p><div class="legend" id="lg-mix"></div><div class="chart" id="c-mix" data-source="pl_ratios"></div></div>
+ <div class="card"><h3>Operating margin, GAAP vs adjusted</h3><p class="note">Adjusted adds back stock-based compensation and non-cash charitable contributions.</p><div class="legend" id="lg-om"></div><div class="chart" id="c-om" data-source="pl_ratios"></div></div>
+ <div class="card"><h3>Revenue per $1 of compute</h3><p class="note">Quarterly revenue ÷ compute and infrastructure expense. Dashed line at $1.</p><div class="chart" id="c-rpc" data-source="compute_eff"></div></div>
+ <div class="card"><h3>GAAP operating income</h3><p class="note">US$. Q1 2026 derived as H1 less Q2.</p><div class="chart" id="c-qoi" data-source="q_opinc"></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Statement of operations</h3><p class="note">US$ millions as filed. The net loss is dominated by non-cash fair-value marks on convertible notes that rise with the valuation.</p>
+ <div class="tbl"><table id="t-pl" data-source="annual_pl" data-row-key="period"><thead><tr>
+  <th data-field="period">Period</th><th data-field="revenue">Revenue</th><th data-field="compute">Compute & infra</th><th data-field="personnel">Personnel</th><th data-field="smp">Sales, mktg & partners</th><th data-field="other">Other op. & admin</th><th data-field="bartz">Bartz settlement</th><th data-field="opex">Total opex</th><th data-field="op_income">Operating income</th><th data-field="sbc">of which SBC</th><th data-field="adj_op_income">Adj. op. income</th><th data-field="fv_change">Fair-value change</th><th data-field="net_loss">Net loss</th>
+ </tr></thead><tbody></tbody></table></div></div>
+</section>
+
+<!-- 04 INVESTMENT -->
+<section id="s-invest">
+<div class="lx-sh"><span>04</span><h2>Investment & capital</h2></div>
+<p class="note2">Compute is almost entirely rented, largely take-or-pay, running to 2036, and partly financed by the same vendors through convertible notes. The S-1's own total is blank; named lines are summed here.</p>
+<div class="tiles">
+ <div class="tile"><div class="l">Named contracted commitments</div><div class="v" data-source="commit_tot" data-field="contracted">—</div></div>
+ <div class="tile"><div class="l">Incl. company estimates</div><div class="v" data-source="commit_tot" data-field="all">—</div></div>
+ <div class="tile"><div class="l">Commitments ÷ cash</div><div class="v" data-source="commit_tot" data-field="x_cash">—</div></div>
+ <div class="tile"><div class="l">Operating cash flow, H1 2026</div><div class="v" data-source="kpis" data-field="value" data-where="key=ocf_h1">—</div><div class="n">vs <span data-source="kpis" data-field="value" data-where="key=ocf_h1_prev">—</span> H1 2025</div></div>
+ <div class="tile"><div class="l">Undrawn vendor convertibles</div><div class="v" data-source="kpis" data-field="value" data-where="key=undrawn_conv">—</div></div>
+ <div class="tile"><div class="l">Accumulated deficit</div><div class="v" data-source="kpis" data-field="value" data-where="key=accum_deficit">—</div></div>
+</div>
+<div class="grid">
+ <div class="card"><h3>Commitments by counterparty</h3><p class="note">US$ billions. Accent = contracted; grey = company estimates outside the contractual table.</p><div class="chart" id="c-com" data-source="commitments" style="min-height:320px"></div></div>
+ <div class="card"><h3>Terms that matter</h3><p class="note">As disclosed in MD&A.</p>
+  <div class="tbl"><table id="t-com" data-source="commitments" data-row-key="counterparty"><thead><tr><th data-field="counterparty">Counterparty</th><th data-field="amount">US$ B</th><th data-field="terms">Terms</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+</section>
+
+<!-- 05 PEOPLE -->
+<section id="s-people">
+<div class="lx-sh"><span>05</span><h2>People</h2></div>
+<p class="note2">A small, very expensive team. Revenue per employee is far above any software peer; equity compensation is the cost to watch once RSUs vest at IPO.</p>
+<div class="tiles">
+ <div class="tile"><div class="l">Employees, Sep 2026</div><div class="v" data-source="people" data-field="headcount" data-where="date=Sep 2026">—</div><div class="n">from <span data-source="people" data-field="headcount" data-where="date=Dec 2024">—</span> at Dec 2024</div></div>
+ <div class="tile"><div class="l">TTM revenue per employee</div><div class="v" data-source="people" data-field="rev_per_emp" data-where="date=Sep 2026">—</div><div class="n">from <span data-source="people" data-field="rev_per_emp" data-where="date=Sep 2025">—</span> a year earlier</div></div>
+ <div class="tile"><div class="l">Personnel cost, H1 2026</div><div class="v" data-source="annual_pl" data-field="personnel" data-where="period=H1 2026">—</div></div>
+ <div class="tile"><div class="l">Approx. cost per employee</div><div class="v" data-source="cost_per_head" data-field="value">—</div><div class="n">H1 × 2 ÷ Sep headcount</div></div>
+ <div class="tile"><div class="l">Unrecognized RSU comp.</div><div class="v" data-source="kpis" data-field="value" data-where="key=unrec_sbc">—</div><div class="n">vests from IPO</div></div>
+</div>
+<div class="card"><h3>Personnel cost and stock-based compensation</h3><p class="note">US$. SBC is included in personnel.</p><div class="legend" id="lg-sbc"></div><div class="chart" id="c-sbc" data-source="sbc"></div></div>
+</section>
+
+<!-- 06 STRATEGY -->
+<section id="s-strategy">
+<div class="lx-sh"><span>06</span><h2>Strategy & governance</h2></div>
+<p class="note2">An enterprise-first research lab whose products (Claude Platform, Claude Code, Cowork) are channels for model capability.</p>
+<div class="grid">
+ <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Growth strategy (S-1)</span><h3>Seven stated pillars</h3>
+  <ul class="pts"><li><b>Talent & culture</b>: mission-aligned, low-ego research culture.</li><li><b>Compute</b>: capacity beyond current deals, own data centers ("Anthropic Direct"), multi-chip fleet.</li><li><b>Capability & safety together</b>: "closing the loop", each model helps build the next.</li><li><b>Accessibility</b>: every surface, all three hyperscaler clouds.</li><li><b>Adoption</b>: direct sales, forward-deployed Applied AI, SIs, Ode with Anthropic.</li><li><b>New markets</b>: life sciences, robotics, physical work.</li><li><b>M&A and partnerships</b>, selectively.</li></ul></div>
+ <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Governance</span><h3>Controlled company by design</h3>
+  <div class="tiles" style="margin:0 0 10px">
+   <div class="tile"><div class="l">Founder LLC voting power</div><div class="v" data-source="kpis" data-field="value" data-where="key=founder_vote">—</div></div>
+   <div class="tile"><div class="l">Equity to Public Benefit Fund</div><div class="v" data-source="kpis" data-field="value" data-where="key=pb_fund">—</div></div></div>
+  <ul class="pts"><li>Delaware public benefit corporation; the Long-Term Benefit Trust elects a board majority.</li><li>Public Class A holders stay a voting minority; strategic holders own non-voting Class N.</li><li>Further Public Benefit Fund issuances are triggered by share-price milestones.</li></ul></div>
+</div>
+</section>
+
+<!-- 07 PRODUCT -->
+<section id="s-product">
+<div class="lx-sh"><span>07</span><h2>Top 5 product priorities</h2></div>
+<p class="note2">Ranked by revenue leverage over the next 18 months, drawn from what the S-1 emphasizes. Ranking is an analyst judgment.</p>
+<div class="prio" id="prio" data-source="product_priorities"></div>
+</section>
+
+<!-- 08 COMPETITION -->
+<section id="s-competition">
+<div class="lx-sh"><span>08</span><h2>Direct competition</h2></div>
+<p class="note2">Peer figures are press-reported, not from the S-1, and are not like-for-like: Google's line is all of Google Cloud. Threat level is an analyst judgment.</p>
+<div class="grid">
+ <div class="card"><h3>Revenue scale, annualized</h3><p class="note">US$ billions; basis differs by company (hover for basis).</p><div class="chart" id="c-comp" data-source="competitors" style="min-height:200px"></div></div>
+ <div class="card"><h3>Positioning vs Anthropic</h3><p class="note">Where each rival overlaps, and what it has that Anthropic doesn't.</p>
+  <div class="tbl"><table id="t-comp" data-source="competitors" data-row-key="name"><thead><tr><th data-field="name">Competitor</th><th data-field="threat">Threat</th><th data-field="overlap">Overlap</th><th data-field="edge">Their edge</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Anthropic's moat, as a banker would pitch it</h3>
+ <ul class="pts"><li><b>Enterprise and coding leadership</b> rather than consumer reach: revenue is mostly consumption from businesses, not chat subscriptions.</li><li><b>Multi-chip compute</b> (Trainium, TPU, NVIDIA, AMD) reduces single-vendor pricing power, though the vendors are also rivals.</li><li><b>Trust and safety brand</b> as a buying criterion in regulated industries.</li><li><b>Weak spots</b>: no owned cloud, no consumer distribution at Google or OpenAI scale, and open-weight models compress prices at the low end.</li></ul></div>
+</section>
+
+<!-- 09 RISKS -->
+<section id="s-risks">
+<div class="lx-sh"><span>09</span><h2>Risks</h2></div>
+<p class="note2">Ten risks from the S-1's risk factors, scored 1–5 for likelihood and impact over the next 24 months. Scores are an analyst judgment.</p>
+<div class="grid">
+ <div class="card"><h3>Risk matrix</h3><p class="note">Top-right is most severe. Hover a point for the risk.</p><div class="chart" id="c-risk" data-source="risks" style="min-height:300px"></div></div>
+ <div class="card"><h3>Risk register</h3><p class="note">Sorted by severity (likelihood × impact).</p>
+  <div class="tbl" style="max-height:340px"><table id="t-risk" data-source="risks" data-row-key="id"><thead><tr><th data-field="id">#</th><th data-field="risk">Risk</th><th data-field="likelihood">L</th><th data-field="impact">I</th><th data-field="mitigant">Mitigant</th><th data-field="watch">KPI to watch</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+</section>
+
+<!-- 10 FORECAST -->
+<section id="s-forecast">
+<div class="lx-sh"><span>10</span><h2>Forecast</h2></div>
+<p class="note2">Illustrative scenarios, not company guidance: the S-1 gives none and says growth will decline. FY2026 = filed H1 + reported Q3 + an assumed Q4; later years apply assumed growth. Probability-weighted line in accent.</p>
+<div class="grid">
+ <div class="card"><span class="tag"><b style="background:var(--color-warn)"></b>Illustrative estimate</span><h3>Revenue by scenario, US$ billions</h3><div class="legend" id="lg-fc"></div><div class="chart" id="c-fc" data-source="forecast"></div></div>
+ <div class="card"><h3>Assumptions and outputs</h3><p class="note">Change these by asking for different assumptions.</p>
+  <div class="tbl"><table id="t-fc" data-source="forecast_tbl" data-row-key="scenario"><thead><tr><th data-field="scenario">Scenario</th><th data-field="probability">Prob.</th><th data-field="q4_2026">Q4 2026</th><th data-field="fy26">FY26E</th><th data-field="g2027">g FY27</th><th data-field="fy27">FY27E</th><th data-field="g2028">g FY28</th><th data-field="fy28">FY28E</th><th data-field="op_margin_2028">Op. margin FY28</th><th data-field="op_inc_28">Op. income FY28</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+</section>
+
+<!-- 11 SENSITIVITY -->
+<section id="s-sensitivity">
+<div class="lx-sh"><span>11</span><h2>Sensitivity</h2></div>
+<p class="note2">How implied value and compute coverage move with the two variables that matter most: FY2027 growth and the multiple the market pays.</p>
+<div class="grid">
+ <div class="card"><h3>Implied value, US$ billions</h3><p class="note">Base FY2026E revenue × (1 + FY2027 growth) × EV / forward revenue. Green beats the reported IPO mark, red falls short.</p>
+  <div class="tbl"><table class="heat" id="t-sens" data-source="sens_val" data-row-key="growth"><thead><tr><th data-field="growth">FY27 growth ↓ / multiple →</th><th data-field="m10">10×</th><th data-field="m15">15×</th><th data-field="m20">20×</th><th data-field="m25">25×</th><th data-field="m30">30×</th></tr></thead><tbody></tbody></table></div></div>
+ <div class="card"><h3>What moves FY2027 implied value</h3><p class="note">Base case at 20× forward revenue; each bar flexes one driver, others held.</p><div class="chart" id="c-tor" data-source="sens_tornado" style="min-height:180px"></div></div>
+ <div class="card"><h3>Can revenue carry the compute bill?</h3><p class="note">Contracted commitments spread evenly over seven years, as a share of each scenario's revenue. Below 50% leaves room for margin.</p><div class="legend" id="lg-cov"></div><div class="chart" id="c-cov" data-source="sens_compute" style="min-height:200px"></div></div>
+</div>
+</section>
+
+<!-- 12 VALUATION -->
+<section id="s-valuation">
+<div class="lx-sh"><span>12</span><h2>Valuation & banker's verdict</h2></div>
+<div class="grid">
+ <div class="card"><h3>Valuation reference points</h3><p class="note">Value ÷ Q3 2026 revenue annualized. Press-reported marks; the S-1 price range is blank.</p>
+  <div class="tbl"><table id="t-val" data-source="val_mult" data-row-key="case"><thead><tr><th data-field="case">Reference</th><th data-field="value_b">US$ B</th><th data-field="ev_rev">× run-rate</th></tr></thead><tbody></tbody></table></div>
+  <div class="tiles" style="margin-top:12px">
+   <div class="tile"><div class="l">Series G-1 price / share</div><div class="v" data-source="kpis" data-field="value" data-where="key=seriesG_px">—</div></div>
+   <div class="tile"><div class="l">Series H-1 price / share</div><div class="v" data-source="kpis" data-field="value" data-where="key=seriesH_px">—</div></div></div></div>
+ <div class="card"><span class="tag"><b style="background:var(--color-ok)"></b>Bull case</span><h3>Fastest enterprise ramp on record</h3>
+  <ul class="pts"><li>Revenue grows far faster than compute; coverage of compute cost rose roughly fivefold in five quarters.</li><li>GAAP operating profit and positive operating cash flow before IPO.</li><li>Extreme net expansion and compounding large-account counts.</li><li>Cash pile funds years of operations before IPO proceeds.</li></ul></div>
+ <div class="card"><span class="tag"><b style="background:var(--color-bad)"></b>Bear case</span><h3>A decade of fixed costs on a quarter of evidence</h3>
+  <ul class="pts"><li>Commitments are many times annual revenue and largely non-cancelable.</li><li>Q3 growth slowed sharply; most revenue comes from models less than six months old.</li><li>Margins benefit from compute bought 12–18 months ahead; new capacity arrives before revenue.</li><li>Public holders get little say; SBC spikes at IPO.</li></ul></div>
+ <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Before pricing</span><h3>Diligence checklist</h3>
+  <ul class="pts"><li>Q3 GAAP figures and the Oct 31 run-rate.</li><li>Training vs inference split; a pro forma gross margin.</li><li>Revenue net of marketplace fees; consideration payable to CSP customers.</li><li>Commitments due in the next 12 months vs cash generation.</li><li>Cohort NRR excluding the top-5 customers.</li></ul></div>
+</div>
+</section>
+
+<div class="foot"><span>Source: Anthropic, PBC Form S-1 (SEC accession 0001628280-26-067168), filed Oct 26, 2026, plus press reporting where noted. Forecasts, sensitivities, risk scores and priority ranking are illustrative analyst estimates. Not investment advice.</span><span>Designed by <a href="https://www.linkedin.com/in/andreacalcagno/" target="_blank" rel="noopener">Andrea Calcagno</a></span></div>
+</div></main>
+</div>
+
+<script>
+(function(){
+const ACC='#5E6AD2';
+const M=v=>(Math.abs(v)>=1000?(v<0?'−':'')+'$'+d3.format(',.1f')(Math.abs(v)/1000)+'B':(v<0?'−':'')+'$'+d3.format(',')(Math.abs(v))+'M');
+const Bn=v=>v==null?'—':(v>=1000?'$'+d3.format(',.2f')(v/1000)+'T':'$'+d3.format(',.0f')(v)+'B');
+const pct=d3.format('.0%');
+const fmtKpi=r=>{if(r.unit==='$M')return M(r.value);if(r.unit==='x100%')return d3.format(',.0%')(r.value);if(r.unit==='%')return r.value===0.501?'50.1%':pct(r.value);if(r.unit==='$')return '$'+d3.format(',.2f')(r.value);return d3.format(',')(r.value);};
+const pal=()=>[ACC,...dash.colors.slice(1)];
+const muted='var(--cds-chart-muted)';
+
+dash.calc('pl_ratios',{title:'P&L as % of revenue',description:'Each operating-expense line and margin divided by revenue for the same period.',inputs:['annual_pl'],
+ fn:(annual_pl)=>annual_pl.map(r=>({period:r.period,compute:r.compute/r.revenue,personnel:r.personnel/r.revenue,smp:r.smp/r.revenue,other:(r.other+r.bartz)/r.revenue,op_margin:r.op_income/r.revenue,adj_margin:r.adj_op_income/r.revenue}))});
+dash.calc('q_growth',{title:'Quarter-on-quarter growth',description:'Each quarter\'s revenue over the prior quarter, minus one.',inputs:['quarterly'],
+ fn:(quarterly)=>quarterly.map((r,i)=>({quarter:r.quarter,qoq:i?r.revenue/quarterly[i-1].revenue-1:null}))});
+dash.calc('commit_tot',{title:'Compute commitment totals',description:'Sum of named contracted lines, sum including company estimates, and that total over cash plus short-term investments.',inputs:['commitments','kpis'],
+ fn:(commitments,kpis)=>{const c=d3.sum(commitments.filter(r=>r.type==='Contracted'),r=>r.amount);const a=d3.sum(commitments,r=>r.amount);const cash=kpis.find(k=>k.key==='cash').value/1000;return [{contracted:c,all:a,x_cash:a/cash}];}});
+dash.calc('q3_annualized',{title:'Q3 2026 revenue annualized',description:'Reported Q3 2026 revenue × 4.',inputs:['kpis'],fn:(kpis)=>[{value:kpis.find(k=>k.key==='q3_rev').value*4}]});
+dash.calc('val_mult',{title:'Valuation multiples',description:'Each valuation reference divided by Q3 2026 revenue × 4.',inputs:['valuation','kpis'],
+ fn:(valuation,kpis)=>{const rr=kpis.find(k=>k.key==='q3_rev').value*4/1000;return valuation.map(v=>({case:v.case,value_b:v.value_b,ev_rev:v.value_b/rr}));}});
+dash.calc('cost_per_head',{title:'Personnel cost per employee',description:'H1 2026 personnel cost × 2 ÷ Sep 2026 headcount, in US$ thousands.',inputs:['annual_pl','people'],
+ fn:(annual_pl,people)=>[{value:annual_pl.find(r=>r.period==='H1 2026').personnel*2*1000/people.find(p=>p.date==='Sep 2026').headcount}]});
+dash.calc('forecast_tbl',{title:'Scenario forecast',description:'FY2026E = H1 2026 + reported Q3 + assumed Q4; FY2027E and FY2028E apply assumed growth; FY2028 operating income = revenue × assumed margin. US$ billions.',inputs:['forecast_assumptions','annual_pl','kpis'],
+ fn:(forecast_assumptions,annual_pl,kpis)=>{const h1=annual_pl.find(r=>r.period==='H1 2026').revenue;const q3=kpis.find(k=>k.key==='q3_rev').value;
+  return forecast_assumptions.map(a=>{const fy26=(h1+q3+a.q4_2026)/1000;const fy27=fy26*(1+a.g2027);const fy28=fy27*(1+a.g2028);
+   return {scenario:a.scenario,probability:a.probability,q4_2026:a.q4_2026/1000,fy26,g2027:a.g2027,fy27,g2028:a.g2028,fy28,op_margin_2028:a.op_margin_2028,op_inc_28:fy28*a.op_margin_2028};});}});
+dash.calc('forecast',{title:'Revenue path by scenario',description:'FY2025 actual and each scenario\'s FY2026–FY2028 revenue in US$ billions, plus the probability-weighted path.',inputs:['forecast_tbl','annual_pl'],
+ fn:(forecast_tbl,annual_pl)=>{const fy25=annual_pl.find(r=>r.period==='FY2025').revenue/1000;const by=s=>forecast_tbl.find(r=>r.scenario===s);
+  const w=k=>forecast_tbl.reduce((s,r)=>s+r[k]*r.probability,0);
+  return [{year:'FY2025A',Bear:fy25,Base:fy25,Bull:fy25,Weighted:fy25},...['fy26','fy27','fy28'].map(k=>({year:'FY20'+k.slice(2)+'E',Bear:by('Bear')[k],Base:by('Base')[k],Bull:by('Bull')[k],Weighted:w(k)}))];}});
+dash.calc('sens_val',{title:'Valuation sensitivity grid',description:'Base FY2026E revenue × (1 + FY2027 growth) × EV/forward revenue multiple, US$ billions; growth 50–150%, multiple 10–30×.',inputs:['forecast_tbl'],
+ fn:(forecast_tbl)=>{const b=forecast_tbl.find(r=>r.scenario==='Base').fy26;return [0.5,0.75,1.0,1.25,1.5].map(g=>({growth:g,m10:b*(1+g)*10,m15:b*(1+g)*15,m20:b*(1+g)*20,m25:b*(1+g)*25,m30:b*(1+g)*30}));}});
+dash.calc('sens_tornado',{title:'Drivers of implied value',description:'Base FY2027E revenue × 20; each driver flexed alone: Q4 2026 ±$3B, FY2027 growth ±25 points, multiple ±5×. US$ billions.',inputs:['forecast_tbl'],
+ fn:(forecast_tbl)=>{const b=forecast_tbl.find(r=>r.scenario==='Base');const base=b.fy27*20;const fy27=(fy26,g)=>fy26*(1+g);
+  return [{driver:'EV / revenue multiple ±5×',low:b.fy27*15,high:b.fy27*25,base},{driver:'FY2027 growth ±25 pts',low:fy27(b.fy26,b.g2027-0.25)*20,high:fy27(b.fy26,b.g2027+0.25)*20,base},{driver:'Q4 2026 revenue ±$3B',low:fy27(b.fy26-3,b.g2027)*20,high:fy27(b.fy26+3,b.g2027)*20,base}];}});
+dash.calc('sens_compute',{title:'Compute bill vs revenue',description:'Named contracted commitments ÷ 7 years, divided by each scenario\'s FY2027E and FY2028E revenue.',inputs:['commitments','forecast_tbl'],
+ fn:(commitments,forecast_tbl)=>{const yr=d3.sum(commitments.filter(r=>r.type==='Contracted'),r=>r.amount)/7;return forecast_tbl.map(r=>({scenario:r.scenario,fy27:yr/r.fy27,fy28:yr/r.fy28}));}});
+
+function tipFor(box){let t=box.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';box.appendChild(t);}return t;}
+function showTip(box,t,lines,x,y){t.replaceChildren();lines.forEach(([cls,txt])=>{const d=document.createElement('div');if(cls)d.className=cls;d.textContent=txt;t.appendChild(d);});const w=box.clientWidth;t.style.opacity=1;const tw=t.offsetWidth;t.style.left=Math.max(0,Math.min(w-tw,x-tw/2))+'px';t.style.top=Math.max(0,y-t.offsetHeight-10)+'px';}
+function failOr(box,ids){for(const id of ids){const s=dash.data(id).status;if(s!=='ok'){box.querySelectorAll('svg,.fail').forEach(n=>n.remove());if(s==='error'||s==='connect'){const f=document.createElement('div');f.className='fail';f.textContent='Failed to load';box.appendChild(f);}return false;}}box.querySelectorAll('.fail').forEach(n=>n.remove());return true;}
+function svgIn(box,h){box.querySelectorAll('svg').forEach(s=>s.remove());const w=box.clientWidth||400;const s=d3.select(box).insert('svg',':first-child').attr('width','100%').attr('viewBox',`0 0 ${w} ${h}`).style('display','block');return [s,w];}
+function styleAxis(g){g.attr('font-size',null).attr('font-family',null);g.selectAll('text').attr('fill','var(--color-fg-muted)').style('font-size','11px');g.selectAll('line').attr('stroke','var(--cds-chart-grid)');g.select('.domain').attr('stroke','var(--cds-chart-axis)');}
+function measure(svg,strs){const t=svg.append('text').style('font-size','11px');let m=0;strs.forEach(s=>{t.text(s);m=Math.max(m,t.node().getComputedTextLength());});t.remove();return m;}
+function txt(svg,x,y,s,{a='start',c='var(--color-fg-muted)',w=null}={}){return svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',a).style('font-size','11px').attr('fill',c).attr('font-weight',w).text(s);}
+function hover(sel,box,fn){const tip=tipFor(box);sel.on('mousemove',(e,d)=>{const[px,py]=d3.pointer(e,box);showTip(box,tip,fn(d),px,py);}).on('mouseleave',()=>tip.style.opacity=0);}
+
+function bars(box,rows,{x,y,fmt,color,labels,h=230,tipLines,zeroLine}){
+ const [svg,w]=svgIn(box,h);const vals=rows.map(r=>r[y]);const lo=Math.min(0,d3.min(vals)),hi=Math.max(0,d3.max(vals));
+ const yS=d3.scaleLinear([lo,hi],[h-24,18]).nice();const ticks=yS.ticks(4);const ml=measure(svg,ticks.map(fmt))+8;
+ const xS=d3.scaleBand(rows.map(r=>r[x]),[ml,w-4]).padding(0.3);
+ const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(fmt).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+ const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(xS).tickSize(0).tickPadding(6));styleAxis(gx);
+ if(xS.bandwidth()<36)gx.selectAll('text').each(function(d,i){if(i%2)d3.select(this).remove();});
+ const bw=Math.min(30,xS.bandwidth());
+ hover(svg.append('g').selectAll('rect').data(rows).join('rect').attr('x',r=>xS(r[x])+(xS.bandwidth()-bw)/2).attr('width',bw).attr('y',r=>yS(Math.max(0,r[y]))).attr('height',r=>Math.max(1,Math.abs(yS(r[y])-yS(0)))).attr('rx',4).attr('fill',(r,i)=>color(r,i)),box,tipLines);
+ if(labels&&xS.bandwidth()>=26)rows.forEach(r=>txt(svg,xS(r[x])+xS.bandwidth()/2,yS(Math.max(0,r[y]))-5,labels(r),{a:'middle'}));
+ if(zeroLine!==undefined)svg.append('line').attr('x1',ml).attr('x2',w-4).attr('y1',yS(zeroLine)).attr('y2',yS(zeroLine)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 3');
+}
+function lines(box,rows,{x,series,h=230,fmt,log,tipFmt}){
+ const [svg,w]=svgIn(box,h);const all=rows.flatMap(r=>series.map(s=>r[s.k])).filter(v=>v!=null);
+ const yS=log?d3.scaleLog([d3.min(all)*0.7,d3.max(all)*1.4],[h-24,14]):d3.scaleLinear([0,d3.max(all)],[h-24,14]).nice();
+ const ticks=log?[10,100,1000,10000].filter(t=>t>=yS.domain()[0]&&t<=yS.domain()[1]):yS.ticks(4);
+ const ml=measure(svg,ticks.map(fmt))+8;const endW=measure(svg,series.map(s=>s.name+' '+fmt(rows[rows.length-1][s.k]??0)))+10;
+ const xS=d3.scalePoint(rows.map(r=>r[x]),[ml+10,w-endW]);
+ const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(fmt).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+ const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(xS).tickSize(0).tickPadding(6));styleAxis(gx);gx.select('.domain').remove();
+ const ends=[];
+ series.forEach(s=>{const pts=rows.filter(r=>r[s.k]!=null);
+  svg.append('path').datum(pts).attr('fill','none').attr('stroke',s.c).attr('stroke-width',s.wd||2).attr('stroke-linecap','round').attr('stroke-linejoin','round').attr('stroke-dasharray',s.dash||null).attr('d',d3.line().x(r=>xS(r[x])).y(r=>yS(r[s.k])));
+  svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx',r=>xS(r[x])).attr('cy',r=>yS(r[s.k])).attr('r',2.6).attr('fill',s.c);
+  const last=pts[pts.length-1];if(last)ends.push({y:yS(last[s.k]),t:s.name+' '+fmt(last[s.k]),c:s.c,x:xS(last[x])});});
+ ends.sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13;
+ ends.forEach(e=>txt(svg,e.x+7,e.y+4,e.t,{c:e.c}));
+ const tip=tipFor(box);svg.append('rect').attr('x',ml).attr('width',w-ml).attr('height',h).attr('fill','transparent')
+  .on('mousemove',e=>{const[px,py]=d3.pointer(e,box);const dom=xS.domain();const i=d3.minIndex(dom,d=>Math.abs(xS(d)-px));const r=rows[i];showTip(box,tip,[['t',r[x]],...series.filter(s=>r[s.k]!=null).map(s=>[null,s.name+': '+(tipFmt||fmt)(r[s.k])])],xS(r[x]),py);}).on('mouseleave',()=>tip.style.opacity=0);
+}
+function legend(id,items){const el=document.getElementById(id);el.replaceChildren();items.forEach(([n,c])=>{const s=document.createElement('span');const i=document.createElement('i');i.style.background=c;s.append(i,n);el.appendChild(s);});}
+function table(id,src,cols,sortFn){const t=document.getElementById(id);const tb=t.querySelector('tbody');tb.replaceChildren();const d=dash.data(src);if(d.status!=='ok')return;
+ let rows=d.data.slice();if(sortFn)rows.sort(sortFn);
+ rows.forEach(r=>{const tr=document.createElement('tr');cols.forEach(([k,fn,cls])=>{const td=document.createElement('td');const v=r[k];td.textContent=fn?fn(v,r):(v??'—');if(cls)td.className=typeof cls==='function'?cls(v,r):cls;tr.appendChild(td);});tb.appendChild(tr);});return tb;}
+
+function fillMarks(){
+ document.querySelectorAll('.lx-main [data-source]').forEach(el=>{
+  if(el.classList.contains('chart')||el.tagName==='TABLE'||el.id==='prio')return;
+  const id=el.dataset.source,f=el.dataset.field;const d=dash.data(id);
+  if(d.status!=='ok'){if(d.status!=='loading')el.classList.remove('dash-skeleton');el.textContent='—';return;}
+  el.classList.remove('dash-skeleton');let r=d.data[0];
+  if(el.dataset.where){const[k,v]=el.dataset.where.split('=');r=d.data.find(x=>String(x[k])===decodeURIComponent(v));}
+  if(!r){el.textContent='—';return;}const v=r[f];
+  if(id==='kpis')el.textContent=fmtKpi(r);
+  else if(id==='commit_tot')el.textContent=f==='x_cash'?d3.format('.1f')(v)+'×':'~$'+d3.format(',.0f')(v)+'B';
+  else if(id==='q3_annualized')el.textContent=M(v);
+  else if(id==='cost_per_head')el.textContent='$'+d3.format(',.0f')(v)+'K';
+  else if(id==='people')el.textContent=f==='rev_per_emp'?'$'+v+'M':d3.format(',')(v);
+  else if(id==='forecast_tbl')el.textContent='~$'+d3.format(',.0f')(v)+'B';
+  else el.textContent=M(v);});
+}
+
+// active nav
+(function(){const links=[...document.querySelectorAll('#lx-nav a[href^="#"]')];const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}});},{root:document,rootMargin:'-20% 0px -70% 0px'});
+ document.querySelectorAll('.lx section').forEach(s=>io.observe(s));
+ links.forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});dash.setLink(el.id);}}));
+ const named=document.getElementById(location.hash.slice(1));if(named)setTimeout(()=>named.scrollIntoView(),300);})();
+
+dash.onData(()=>{
+ fillMarks();const c=pal();let b;
+ b=document.getElementById('c-qrev');
+ if(failOr(b,['quarterly','q_growth'])){const g=dash.data('q_growth').data;const rows=dash.data('quarterly').data.map((r,i)=>({...r,qoq:g[i]?g[i].qoq:null}));
+  bars(b,rows,{x:'quarter',y:'revenue',fmt:M,color:r=>r.basis.startsWith('Filed')?c[0]:muted,labels:r=>r.qoq==null?'':'+'+pct(r.qoq),tipLines:r=>[['t',r.quarter],[null,'Revenue: '+M(r.revenue)],[null,r.basis]]});}
+ b=document.getElementById('c-arev');
+ if(failOr(b,['annual_pl']))bars(b,dash.data('annual_pl').data,{x:'period',y:'revenue',fmt:M,color:r=>r.period.startsWith('H1')?c[1]:c[0],labels:r=>M(r.revenue),tipLines:r=>[['t',r.period],[null,'Revenue: '+M(r.revenue)],[null,'Operating income: '+M(r.op_income)]]});
+ b=document.getElementById('c-pmix');
+ if(failOr(b,['pricing_mix'])){const rows=dash.data('pricing_mix').data;const [svg,w]=svgIn(b,96);let x=0;const xs=d3.scaleLinear([0,1],[0,w]);
+  rows.forEach((r,i)=>{svg.append('rect').attr('x',xs(x)+(i?2:0)).attr('y',6).attr('width',xs(r.share)-(i?2:0)).attr('height',28).attr('rx',5).attr('fill',c[i]);
+   txt(svg,xs(x)+(i?xs(r.share)-2:2),54,pct(r.share)+' · '+M(r.revenue),{a:i?'end':'start',c:'var(--color-fg)',w:600});txt(svg,xs(x)+(i?xs(r.share)-2:2),72,r.model.split(' (')[0],{a:i?'end':'start'});x+=r.share;});}
+ b=document.getElementById('c-chan');
+ if(failOr(b,['channel_mix']))lines(b,dash.data('channel_mix').data,{x:'period',fmt:pct,series:[{k:'csp_share',name:'Revenue',c:c[0]},{k:'ar_share',name:'Receivables',c:c[2],dash:'5 4'}]});
+ b=document.getElementById('c-cust');
+ if(failOr(b,['customers']))lines(b,dash.data('customers').data,{x:'date',log:true,fmt:v=>d3.format(',')(v),series:[{k:'c100k',name:'$100K+',c:c[0]}]});
+ // cost mix
+ b=document.getElementById('c-mix');
+ if(failOr(b,['pl_ratios'])){const rows=dash.data('pl_ratios').data;const keys=[['compute','Compute & infra',c[0]],['personnel','Personnel',c[1]],['smp','Sales, mktg & partners',c[2]],['other','Other & Bartz',c[3]]];
+  legend('lg-mix',keys.map(k=>[k[1],k[2]]));const h=250;const [svg,w]=svgIn(b,h);const tot=rows.map(r=>keys.reduce((s,k)=>s+r[k[0]],0));
+  const yS=d3.scaleSqrt([0,d3.max(tot)],[h-24,14]);const ticks=[0.5,1,5,10].filter(t=>t<=d3.max(tot));const ml=measure(svg,ticks.map(pct))+8;
+  const xS=d3.scaleBand(rows.map(r=>r.period),[ml,w-4]).padding(0.32);const bw=Math.min(30,xS.bandwidth());
+  const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(pct).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+  const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(xS).tickSize(0).tickPadding(6));styleAxis(gx);
+  rows.forEach(r=>{let acc=0;keys.forEach(k=>{const y0=acc;acc+=r[k[0]];hover(svg.append('rect').datum(r).attr('x',xS(r.period)+(xS.bandwidth()-bw)/2).attr('width',bw).attr('y',yS(acc)).attr('height',Math.max(0,yS(y0)-yS(acc)-1)).attr('fill',k[2]),b,r=>[['t',r.period],...keys.map(kk=>[null,kk[1]+': '+pct(r[kk[0]])])]);});
+   txt(svg,xS(r.period)+xS.bandwidth()/2,yS(acc)-5,pct(acc),{a:'middle'});});
+  svg.append('line').attr('x1',ml).attr('x2',w-4).attr('y1',yS(1)).attr('y2',yS(1)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 3');}
+ // op margin
+ b=document.getElementById('c-om');
+ if(failOr(b,['pl_ratios'])){const rows=dash.data('pl_ratios').data.filter(r=>r.period!=='FY2023');legend('lg-om',[['GAAP',c[0]],['Adjusted',c[1]]]);
+  const h=230;const [svg,w]=svgIn(b,h);const yS=d3.scaleLinear([d3.min(rows,r=>Math.min(r.op_margin,r.adj_margin)),0.2],[h-24,14]).nice();const ticks=yS.ticks(5);const ml=measure(svg,ticks.map(pct))+8;
+  const x0=d3.scaleBand(rows.map(r=>r.period),[ml,w-4]).padding(0.25);const x1=d3.scaleBand(['op_margin','adj_margin'],[0,x0.bandwidth()]).padding(0.12);
+  const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(pct).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+  const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(x0).tickSize(0).tickPadding(6));styleAxis(gx);gx.select('.domain').remove();
+  rows.forEach(r=>['op_margin','adj_margin'].forEach((k,i)=>hover(svg.append('rect').datum(r).attr('x',x0(r.period)+x1(k)).attr('width',x1.bandwidth()).attr('y',yS(Math.max(0,r[k]))).attr('height',Math.max(1,Math.abs(yS(r[k])-yS(0)))).attr('rx',3).attr('fill',c[i]),b,r=>[['t',r.period],[null,'GAAP: '+pct(r.op_margin)],[null,'Adjusted: '+pct(r.adj_margin)]])));
+  svg.append('line').attr('x1',ml).attr('x2',w-4).attr('y1',yS(0)).attr('y2',yS(0)).attr('stroke','var(--cds-chart-axis)');}
+ b=document.getElementById('c-rpc');
+ if(failOr(b,['compute_eff']))bars(b,dash.data('compute_eff').data,{x:'quarter',y:'rev_per_compute',fmt:v=>'$'+d3.format('.2f')(v),color:r=>r.rev_per_compute>=1?c[0]:'var(--cds-chart-status-critical)',labels:r=>'$'+d3.format('.2f')(r.rev_per_compute),zeroLine:1,tipLines:r=>[['t',r.quarter],[null,'Revenue per $1 compute: $'+d3.format('.2f')(r.rev_per_compute)],[null,'Compute: '+M(r.compute)]]});
+ b=document.getElementById('c-qoi');
+ if(failOr(b,['q_opinc']))bars(b,dash.data('q_opinc').data,{x:'quarter',y:'op_income',fmt:M,color:r=>r.op_income>=0?c[0]:'var(--cds-chart-status-critical)',labels:r=>M(r.op_income),tipLines:r=>[['t',r.quarter],[null,'Operating income: '+M(r.op_income)]]});
+ const sign=v=>v<0?'neg':'';const n=v=>v===0?'—':d3.format(',')(v);
+ table('t-pl','annual_pl',[['period'],['revenue',n],['compute',n],['personnel',n],['smp',n],['other',n],['bartz',n],['opex',n],['op_income',n,sign],['sbc',n],['adj_op_income',n,v=>v<0?'neg':'pos'],['fv_change',n,sign],['net_loss',n,sign]]);
+ // commitments
+ b=document.getElementById('c-com');
+ if(failOr(b,['commitments'])){const rows=dash.data('commitments').data.slice().sort((a,z)=>z.amount-a.amount);const h=Math.max(300,rows.length*32+20);const [svg,w]=svgIn(b,h);
+  const lw=Math.min(w*0.42,measure(svg,rows.map(r=>r.counterparty.split(' (')[0]))+10);const vw=measure(svg,['$999B'])+8;
+  const xS=d3.scaleLinear([0,d3.max(rows,r=>r.amount)],[lw,w-vw]);const yS=d3.scaleBand(rows.map(r=>r.counterparty),[4,h-4]).padding(0.28);
+  rows.forEach(r=>{txt(svg,lw-8,yS(r.counterparty)+yS.bandwidth()/2+4,r.counterparty.split(' (')[0],{a:'end'});
+   hover(svg.append('rect').datum(r).attr('x',lw).attr('y',yS(r.counterparty)).attr('height',Math.min(22,yS.bandwidth())).attr('width',xS(r.amount)-lw).attr('rx',4).attr('fill',r.type==='Contracted'?c[0]:muted),b,r=>[['t',r.counterparty],[null,'$'+r.amount+'B · '+r.type]]);
+   txt(svg,xS(r.amount)+5,yS(r.counterparty)+yS.bandwidth()/2+4,'$'+d3.format(',.0f')(r.amount)+'B',{c:'var(--color-fg)'});});}
+ table('t-com','commitments',[['counterparty'],['amount',v=>d3.format(',.1f')(v)],['terms',null,'wrap']]);
+ // SBC
+ b=document.getElementById('c-sbc');
+ if(failOr(b,['sbc'])){const rows=dash.data('sbc').data;legend('lg-sbc',[['Personnel cost',c[0]],['of which SBC',c[2]]]);const h=230;const [svg,w]=svgIn(b,h);
+  const yS=d3.scaleLinear([0,d3.max(rows,r=>r.personnel)],[h-24,14]).nice();const ticks=yS.ticks(4);const ml=measure(svg,ticks.map(M))+8;
+  const xS=d3.scaleBand(rows.map(r=>r.period),[ml,w-4]).padding(0.35);const bw=Math.min(30,xS.bandwidth());
+  const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(M).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+  const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(xS).tickSize(0).tickPadding(6));styleAxis(gx);
+  rows.forEach(r=>{const x=xS(r.period)+(xS.bandwidth()-bw)/2;svg.append('rect').attr('x',x).attr('width',bw).attr('y',yS(r.personnel)).attr('height',yS(0)-yS(r.personnel)).attr('rx',4).attr('fill',c[0]);
+   svg.append('rect').attr('x',x+bw*0.22).attr('width',bw*0.56).attr('y',yS(r.sbc)).attr('height',Math.max(1,yS(0)-yS(r.sbc))).attr('rx',3).attr('fill',c[2]);
+   hover(svg.append('rect').datum(r).attr('x',x).attr('width',bw).attr('y',14).attr('height',h-38).attr('fill','transparent'),b,r=>[['t',r.period],[null,'Personnel: '+M(r.personnel)],[null,'SBC: '+M(r.sbc)+' ('+pct(r.sbc/r.personnel)+')']]);});}
+ // product priorities
+ const pr=document.getElementById('prio');pr.replaceChildren();const pd=dash.data('product_priorities');
+ if(pd.status==='ok')pd.data.forEach(r=>{const row=document.createElement('div');row.className='prow';
+  const rk=document.createElement('div');rk.className='rk';rk.textContent=String(r.rank).padStart(2,'0');
+  const mid=document.createElement('div');const h4=document.createElement('h4');h4.textContent=r.priority;const p=document.createElement('p');p.textContent=r.why;mid.append(h4,p);
+  const k=document.createElement('div');k.className='k';k.textContent=r.horizon+' · KPI';const kb=document.createElement('b');kb.textContent=r.kpi;k.appendChild(kb);
+  row.append(rk,mid,k);pr.appendChild(row);});
+ else if(pd.status==='error'){const f=document.createElement('div');f.className='fail';f.textContent='Failed to load';pr.appendChild(f);}
+ // competition
+ b=document.getElementById('c-comp');
+ if(failOr(b,['competitors'])){const rows=dash.data('competitors').data.filter(r=>r.revenue_b!=null).sort((a,z)=>z.revenue_b-a.revenue_b);const h=rows.length*46+20;const [svg,w]=svgIn(b,h);
+  const lw=measure(svg,rows.map(r=>r.name))+12;const xS=d3.scaleLinear([0,d3.max(rows,r=>r.revenue_b)],[lw,w-56]);const yS=d3.scaleBand(rows.map(r=>r.name),[6,h-6]).padding(0.35);
+  rows.forEach(r=>{txt(svg,lw-8,yS(r.name)+yS.bandwidth()/2+4,r.name,{a:'end',c:'var(--color-fg)'});
+   hover(svg.append('rect').datum(r).attr('x',lw).attr('y',yS(r.name)).attr('height',yS.bandwidth()).attr('width',xS(r.revenue_b)-lw).attr('rx',4).attr('fill',r.name.startsWith('Anthropic')?c[0]:muted),b,r=>[['t',r.name],[null,'$'+d3.format(',.1f')(r.revenue_b)+'B'],[null,r.revenue_basis],[null,'Valuation: '+Bn(r.valuation_b)]]);
+   txt(svg,xS(r.revenue_b)+5,yS(r.name)+yS.bandwidth()/2+4,'$'+d3.format(',.0f')(r.revenue_b)+'B',{c:'var(--color-fg)'});});}
+ const tb=table('t-comp','competitors',[['name'],['threat',null,(v)=>'l thr '+v],['overlap',null,'wrap'],['edge',null,'wrap']]);
+ // risks
+ b=document.getElementById('c-risk');
+ if(failOr(b,['risks'])){const rows=dash.data('risks').data;const h=300;const [svg,w]=svgIn(b,h);const ml=34,mb=30;
+  const xS=d3.scaleLinear([0.5,5.5],[ml,w-8]),yS=d3.scaleLinear([0.5,5.5],[h-mb,8]);
+  for(let i=1;i<=5;i++)for(let j=1;j<=5;j++){const s=i*j;svg.append('rect').attr('x',xS(i-0.5)+1).attr('y',yS(j+0.5)+1).attr('width',xS(1.5)-xS(0.5)-2).attr('height',yS(0.5)-yS(1.5)-2).attr('rx',4)
+   .attr('fill',s>=15?'var(--cds-chart-status-critical)':s>=8?'var(--color-warn)':'var(--cds-chart-grid)').attr('opacity',s>=15?.18:s>=8?.14:.5);}
+  [1,2,3,4,5].forEach(i=>{txt(svg,xS(i),h-mb+16,i,{a:'middle'});txt(svg,ml-10,yS(i)+4,i,{a:'end'});});
+  txt(svg,(ml+w)/2,h-2,'Likelihood →',{a:'middle'});svg.append('text').attr('transform',`translate(10,${(h-mb)/2}) rotate(-90)`).attr('text-anchor','middle').style('font-size','11px').attr('fill','var(--color-fg-muted)').text('Impact →');
+  const grp=d3.group(rows,r=>r.likelihood+'-'+r.impact);
+  grp.forEach(list=>list.forEach((r,k)=>{const off=(k-(list.length-1)/2)*24;const g=svg.append('g').datum(r).attr('transform',`translate(${xS(r.likelihood)+off},${yS(r.impact)})`);
+   g.append('circle').attr('r',11).attr('fill',ACC);g.append('text').attr('text-anchor','middle').attr('y',4).style('font-size','10px').attr('fill','#fff').attr('font-weight',600).text(r.id.slice(1));
+   hover(g,b,r=>[['t',r.id+' · '+r.category],[null,r.risk],[null,'Likelihood '+r.likelihood+' · Impact '+r.impact]]);}));}
+ table('t-risk','risks',[['id'],['risk',null,'wrap'],['likelihood'],['impact'],['mitigant',null,'wrap'],['watch',null,'wrap']],(a,z)=>z.likelihood*z.impact-a.likelihood*a.impact);
+ // forecast
+ b=document.getElementById('c-fc');
+ if(failOr(b,['forecast'])){legend('lg-fc',[['Bull',c[2]],['Base',c[1]],['Bear',c[3]],['Weighted',c[0]]]);
+  lines(b,dash.data('forecast').data,{x:'year',fmt:v=>'$'+d3.format(',.0f')(v)+'B',tipFmt:v=>'$'+d3.format(',.1f')(v)+'B',series:[{k:'Bull',name:'Bull',c:c[2],dash:'4 3'},{k:'Base',name:'Base',c:c[1],dash:'4 3'},{k:'Bear',name:'Bear',c:c[3],dash:'4 3'},{k:'Weighted',name:'Weighted',c:c[0],wd:2.5}]});}
+ const B1=v=>'$'+d3.format(',.1f')(v)+'B';
+ table('t-fc','forecast_tbl',[['scenario'],['probability',pct],['q4_2026',B1],['fy26',B1],['g2027',v=>'+'+pct(v)],['fy27',B1],['g2028',v=>'+'+pct(v)],['fy28',B1],['op_margin_2028',pct],['op_inc_28',B1]]);
+ // sensitivity grid
+ const tsd=dash.data('sens_val'),vd=dash.data('valuation');const tbs=document.querySelector('#t-sens tbody');tbs.replaceChildren();
+ if(tsd.status==='ok'&&vd.status==='ok'){const mark=vd.data.find(v=>v.case.startsWith('Reported IPO'))?.value_b;const keys=['m10','m15','m20','m25','m30'];
+  tsd.data.forEach(r=>{const tr=document.createElement('tr');tr.dataset.key=String(r.growth);const td0=document.createElement('td');td0.textContent='+'+pct(r.growth);tr.appendChild(td0);
+   keys.forEach(k=>{const td=document.createElement('td');td.className='cell';td.textContent=Bn(r[k]);const ratio=r[k]/mark;
+    td.style.background=ratio>=1?`color-mix(in srgb, var(--color-ok) ${Math.min(40,10+(ratio-1)*30)}%, transparent)`:`color-mix(in srgb, var(--color-bad) ${Math.min(40,10+(1-ratio)*40)}%, transparent)`;tr.appendChild(td);});tbs.appendChild(tr);});}
+ // tornado
+ b=document.getElementById('c-tor');
+ if(failOr(b,['sens_tornado'])){const rows=dash.data('sens_tornado').data;const h=rows.length*48+30;const [svg,w]=svgIn(b,h);const base=rows[0].base;
+  const lw=Math.min(w*0.42,measure(svg,rows.map(r=>r.driver))+12);const lo=d3.min(rows,r=>r.low),hi=d3.max(rows,r=>r.high);const vw2=measure(svg,['$9.99T'])+8;const xS=d3.scaleLinear([lo,hi],[lw+vw2,w-vw2]);const yS=d3.scaleBand(rows.map(r=>r.driver),[6,h-26]).padding(0.35);
+  rows.forEach(r=>{txt(svg,lw-8,yS(r.driver)+yS.bandwidth()/2+4,r.driver,{a:'end',c:'var(--color-fg)'});
+   svg.append('rect').attr('x',xS(r.low)).attr('width',xS(base)-xS(r.low)).attr('y',yS(r.driver)).attr('height',yS.bandwidth()).attr('rx',3).attr('fill','var(--cds-chart-status-critical)').attr('opacity',.75);
+   svg.append('rect').attr('x',xS(base)).attr('width',xS(r.high)-xS(base)).attr('y',yS(r.driver)).attr('height',yS.bandwidth()).attr('rx',3).attr('fill',c[0]);
+   hover(svg.append('rect').datum(r).attr('x',xS(r.low)).attr('width',xS(r.high)-xS(r.low)).attr('y',yS(r.driver)).attr('height',yS.bandwidth()).attr('fill','transparent'),b,r=>[['t',r.driver],[null,'Low: '+Bn(r.low)],[null,'Base: '+Bn(r.base)],[null,'High: '+Bn(r.high)]]);
+   txt(svg,xS(r.low)-4,yS(r.driver)+yS.bandwidth()/2+4,Bn(r.low),{a:'end'});txt(svg,xS(r.high)+4,yS(r.driver)+yS.bandwidth()/2+4,Bn(r.high));});
+  svg.append('line').attr('x1',xS(base)).attr('x2',xS(base)).attr('y1',2).attr('y2',h-22).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 3');
+  txt(svg,xS(base),h-8,'Base '+Bn(base),{a:'middle',c:'var(--color-fg)'});}
+ // compute coverage
+ b=document.getElementById('c-cov');
+ if(failOr(b,['sens_compute'])){const rows=dash.data('sens_compute').data;legend('lg-cov',[['FY2027E',c[1]],['FY2028E',c[0]]]);const h=210;const [svg,w]=svgIn(b,h);
+  const yS=d3.scaleLinear([0,Math.max(1,d3.max(rows,r=>Math.max(r.fy27,r.fy28)))],[h-24,14]).nice();const ticks=yS.ticks(4);const ml=measure(svg,ticks.map(pct))+8;
+  const x0=d3.scaleBand(rows.map(r=>r.scenario),[ml,w-4]).padding(0.3);const x1=d3.scaleBand(['fy27','fy28'],[0,x0.bandwidth()]).padding(0.12);
+  const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(pct).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+  const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(x0).tickSize(0).tickPadding(6));styleAxis(gx);
+  rows.forEach(r=>['fy27','fy28'].forEach((k,i)=>{hover(svg.append('rect').datum(r).attr('x',x0(r.scenario)+x1(k)).attr('width',x1.bandwidth()).attr('y',yS(r[k])).attr('height',yS(0)-yS(r[k])).attr('rx',3).attr('fill',r[k]>0.5?'var(--cds-chart-status-critical)':(i?c[0]:c[1])),b,r=>[['t',r.scenario],[null,'FY2027E: '+pct(r.fy27)],[null,'FY2028E: '+pct(r.fy28)]]);
+   if(x1.bandwidth()>=24)txt(svg,x0(r.scenario)+x1(k)+x1.bandwidth()/2,yS(r[k])-4,pct(r[k]),{a:'middle'});}));
+  svg.append('line').attr('x1',ml).attr('x2',w-4).attr('y1',yS(0.5)).attr('y2',yS(0.5)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 3');}
+ // valuation
+ table('t-val','val_mult',[['case'],['value_b',v=>d3.format(',')(v)],['ev_rev',v=>d3.format('.1f')(v)+'×']]);
+});
+})();
+</script>
+
+</div>
+</body>
+</html>

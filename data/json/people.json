@@ -1,0 +1,17 @@
+[
+ {
+  "date": "Dec 2024",
+  "headcount": 940,
+  "rev_per_emp": null
+ },
+ {
+  "date": "Sep 2025",
+  "headcount": null,
+  "rev_per_emp": 1.4
+ },
+ {
+  "date": "Sep 2026",
+  "headcount": 5300,
+  "rev_per_emp": 6.6
+ }
+]

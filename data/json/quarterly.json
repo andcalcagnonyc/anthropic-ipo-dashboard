@@ -1,0 +1,42 @@
+[
+ {
+  "quarter": "Q4 2024",
+  "revenue": 197,
+  "basis": "Filed (risk factors)"
+ },
+ {
+  "quarter": "Q1 2025",
+  "revenue": 376,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q2 2025",
+  "revenue": 787,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q3 2025",
+  "revenue": 1382,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q4 2025",
+  "revenue": 2040,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q1 2026",
+  "revenue": 4731,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q2 2026",
+  "revenue": 11555,
+  "basis": "Filed"
+ },
+ {
+  "quarter": "Q3 2026",
+  "revenue": 16800,
+  "basis": "Reported (FT/Reuters); S-1 states 86x Q4 2024"
+ }
+]

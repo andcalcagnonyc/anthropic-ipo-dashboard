@@ -1,0 +1,68 @@
+[
+ {
+  "name": "Anthropic (Claude)",
+  "type": "Frontier lab, enterprise-first",
+  "revenue_b": 67.2,
+  "revenue_basis": "Q3 2026 revenue x4",
+  "valuation_b": 1500,
+  "valuation_basis": "Reported IPO mark",
+  "threat": "\u2014",
+  "overlap": "\u2014",
+  "edge": "Coding agents, enterprise trust, compute efficiency"
+ },
+ {
+  "name": "OpenAI (ChatGPT)",
+  "type": "Frontier lab, consumer + enterprise",
+  "revenue_b": 70,
+  "revenue_basis": "Annualized, Sep 2026 (Reuters/Axios)",
+  "valuation_b": 1400,
+  "valuation_basis": "Reported round talks, Sep 2026",
+  "threat": "High",
+  "overlap": "API, coding agents, enterprise seats",
+  "edge": "Consumer scale and brand; bundling with Microsoft"
+ },
+ {
+  "name": "Google (Gemini / Cloud)",
+  "type": "Hyperscaler + frontier lab",
+  "revenue_b": 99.1,
+  "revenue_basis": "Google Cloud Q2 2026 x4 (all cloud, not AI only)",
+  "valuation_b": null,
+  "valuation_basis": "Part of Alphabet",
+  "threat": "High",
+  "overlap": "Models, coding agents, cloud distribution",
+  "edge": "Own TPUs, 950M Gemini app MAU, $195-205B capex"
+ },
+ {
+  "name": "SpaceXAI (Grok)",
+  "type": "Frontier lab inside SpaceX",
+  "revenue_b": null,
+  "revenue_basis": "Not disclosed",
+  "valuation_b": null,
+  "valuation_basis": "Part of SpaceX",
+  "threat": "Medium",
+  "overlap": "Frontier models; also Anthropic's GPU landlord",
+  "edge": "Owns compute; can reprice after 2027"
+ },
+ {
+  "name": "Meta (Llama)",
+  "type": "Big tech, open-weight",
+  "revenue_b": null,
+  "revenue_basis": "Not monetized directly",
+  "valuation_b": null,
+  "valuation_basis": "Part of Meta",
+  "threat": "Medium",
+  "overlap": "Low-cost models for builders",
+  "edge": "Free weights; massive capex"
+ },
+ {
+  "name": "Open-weight challengers (DeepSeek, Qwen, Mistral)",
+  "type": "Open / low-cost models",
+  "revenue_b": null,
+  "revenue_basis": "Small",
+  "valuation_b": null,
+  "valuation_basis": "\u2014",
+  "threat": "Medium",
+  "overlap": "Price-sensitive API workloads",
+  "edge": "Price; on-prem deployment"
+ }
+]

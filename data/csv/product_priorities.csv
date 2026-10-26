@@ -1,0 +1,6 @@
+rank,priority,why,kpi,horizon
+1,Claude Code: expand inside the enterprise,Fortune 500 customers spend under 0.1% of their expenses on Anthropic; Claude Enterprise users who adopt Claude Code spend roughly 20x those who don't.,Seats and spend per Claude Code account; NRR,Now
+2,Cowork + Claude.ai: one agentic app for every knowledge worker,Cowork (Jan 2026) is adopting faster than Claude Code did; merging into Claude.ai from Sep 2026 moves the target from 30M developers to 1B+ knowledge workers.,Subscription revenue mix (20% today),Now–2027
+3,Claude Platform: long-running Virtual Collaborators,Customers build agents on the same primitives Anthropic uses; tasks of hours to days are the next unlock and the main source of consumption growth.,Consumption revenue (80% today); $10M+ customers,2026–2027
+4,Cost per task: ship cheaper frontier models faster,Opus 5.5 cut cost per task about 40% vs Opus 5 while margins held; over 80% of Q3 revenue came from models released in the prior six months.,Revenue per $1 of compute,Continuous
+5,Verticals and new markets,"Life sciences, robotics via the Model Hardware Standard, and mid-market through Ode with Anthropic and SIs extend TAM beyond software teams.",Revenue outside top-5 customers; new-vertical logos,2027+

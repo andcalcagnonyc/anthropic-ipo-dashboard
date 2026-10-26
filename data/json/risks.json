@@ -1,0 +1,102 @@
+[
+ {
+  "id": "R1",
+  "risk": "Take-or-pay compute vs slowing growth",
+  "category": "Financial",
+  "likelihood": 4,
+  "impact": 5,
+  "s1": "Contractual obligations; risk factors on compute",
+  "mitigant": "SpaceXAI cancelable on 90 days from 2027; vendor convertible capacity",
+  "watch": "Commitments due in next 12 months vs operating cash flow"
+ },
+ {
+  "id": "R2",
+  "risk": "Frontier position lost to a competitor model",
+  "category": "Competitive",
+  "likelihood": 3,
+  "impact": 5,
+  "s1": "Ability to develop the most capable models",
+  "mitigant": "Closing-the-loop research speed; multi-chip compute",
+  "watch": "Share of revenue from models under 6 months old"
+ },
+ {
+  "id": "R3",
+  "risk": "Hyperscaler conflict (supplier, channel, lender, rival)",
+  "category": "Strategic",
+  "likelihood": 3,
+  "impact": 4,
+  "s1": "Reliance on a limited number of CSPs",
+  "mitigant": "Direct contracts with end customers; Anthropic Direct data centers",
+  "watch": "Marketplace share of revenue and receivables"
+ },
+ {
+  "id": "R4",
+  "risk": "Customer concentration and non-contracted spend",
+  "category": "Commercial",
+  "likelihood": 3,
+  "impact": 4,
+  "s1": "Limited number of customers and channels",
+  "mitigant": "Top-5 share falling; 11,900+ large accounts",
+  "watch": "Revenue outside top-5 customers"
+ },
+ {
+  "id": "R5",
+  "risk": "Model misbehavior or catastrophic incident, possibly uninsurable",
+  "category": "Safety & liability",
+  "likelihood": 2,
+  "impact": 5,
+  "s1": "Unintended, misaligned or autonomous behavior",
+  "mitigant": "Safety gating of releases (e.g. Mythos via Glasswing)",
+  "watch": "Release delays; incident disclosures"
+ },
+ {
+  "id": "R6",
+  "risk": "US government actions (supply-chain designation, export controls)",
+  "category": "Regulatory",
+  "likelihood": 3,
+  "impact": 3,
+  "s1": "Evolving regulatory and political environment",
+  "mitigant": "Litigation; government is ~1% of revenue",
+  "watch": "En banc rehearing outcome; export-control changes"
+ },
+ {
+  "id": "R7",
+  "risk": "Price deflation per task outpaces volume growth",
+  "category": "Commercial",
+  "likelihood": 3,
+  "impact": 3,
+  "s1": "Pricing and cost-per-task reductions",
+  "mitigant": "Compute efficiency preserves margin",
+  "watch": "Revenue per $1 of compute"
+ },
+ {
+  "id": "R8",
+  "risk": "Governance limits public holders' influence",
+  "category": "Governance",
+  "likelihood": 5,
+  "impact": 2,
+  "s1": "Class F 50.1% vote; LTBT board majority",
+  "mitigant": "PBC duties; independent audit and comp committees",
+  "watch": "Discount vs single-class peers"
+ },
+ {
+  "id": "R9",
+  "risk": "SBC spike and dilution at and after IPO",
+  "category": "Financial",
+  "likelihood": 5,
+  "impact": 2,
+  "s1": "RSU performance condition met at effectiveness",
+  "mitigant": "Strong cash generation",
+  "watch": "Unrecognized SBC; Public Benefit Fund issuances"
+ },
+ {
+  "id": "R10",
+  "risk": "Revenue from usage-policy violators (5-7%)",
+  "category": "Commercial",
+  "likelihood": 4,
+  "impact": 2,
+  "s1": "Components of results \u2014 revenue",
+  "mitigant": "Enforcement stepped up Aug-Sep 2026",
+  "watch": "Disclosed share in next filings"
+ }
+]

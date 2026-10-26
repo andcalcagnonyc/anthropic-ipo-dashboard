@@ -1,0 +1,7 @@
+name,type,revenue_b,revenue_basis,valuation_b,valuation_basis,threat,overlap,edge
+Anthropic (Claude),"Frontier lab, enterprise-first",67.2,Q3 2026 revenue x4,1500,Reported IPO mark,—,—,"Coding agents, enterprise trust, compute efficiency"
+OpenAI (ChatGPT),"Frontier lab, consumer + enterprise",70,"Annualized, Sep 2026 (Reuters/Axios)",1400,"Reported round talks, Sep 2026",High,"API, coding agents, enterprise seats",Consumer scale and brand; bundling with Microsoft
+Google (Gemini / Cloud),Hyperscaler + frontier lab,99.1,"Google Cloud Q2 2026 x4 (all cloud, not AI only)",,Part of Alphabet,High,"Models, coding agents, cloud distribution","Own TPUs, 950M Gemini app MAU, $195-205B capex"
+SpaceXAI (Grok),Frontier lab inside SpaceX,,Not disclosed,,Part of SpaceX,Medium,Frontier models; also Anthropic's GPU landlord,Owns compute; can reprice after 2027
+Meta (Llama),"Big tech, open-weight",,Not monetized directly,,Part of Meta,Medium,Low-cost models for builders,Free weights; massive capex
+"Open-weight challengers (DeepSeek, Qwen, Mistral)",Open / low-cost models,,Small,,—,Medium,Price-sensitive API workloads,Price; on-prem deployment

@@ -1,0 +1,11 @@
+id,risk,category,likelihood,impact,s1,mitigant,watch
+R1,Take-or-pay compute vs slowing growth,Financial,4,5,Contractual obligations; risk factors on compute,SpaceXAI cancelable on 90 days from 2027; vendor convertible capacity,Commitments due in next 12 months vs operating cash flow
+R2,Frontier position lost to a competitor model,Competitive,3,5,Ability to develop the most capable models,Closing-the-loop research speed; multi-chip compute,Share of revenue from models under 6 months old
+R3,"Hyperscaler conflict (supplier, channel, lender, rival)",Strategic,3,4,Reliance on a limited number of CSPs,Direct contracts with end customers; Anthropic Direct data centers,Marketplace share of revenue and receivables
+R4,Customer concentration and non-contracted spend,Commercial,3,4,Limited number of customers and channels,"Top-5 share falling; 11,900+ large accounts",Revenue outside top-5 customers
+R5,"Model misbehavior or catastrophic incident, possibly uninsurable",Safety & liability,2,5,"Unintended, misaligned or autonomous behavior",Safety gating of releases (e.g. Mythos via Glasswing),Release delays; incident disclosures
+R6,"US government actions (supply-chain designation, export controls)",Regulatory,3,3,Evolving regulatory and political environment,Litigation; government is ~1% of revenue,En banc rehearing outcome; export-control changes
+R7,Price deflation per task outpaces volume growth,Commercial,3,3,Pricing and cost-per-task reductions,Compute efficiency preserves margin,Revenue per $1 of compute
+R8,Governance limits public holders' influence,Governance,5,2,Class F 50.1% vote; LTBT board majority,PBC duties; independent audit and comp committees,Discount vs single-class peers
+R9,SBC spike and dilution at and after IPO,Financial,5,2,RSU performance condition met at effectiveness,Strong cash generation,Unrecognized SBC; Public Benefit Fund issuances
+R10,Revenue from usage-policy violators (5-7%),Commercial,4,2,Components of results — revenue,Enforcement stepped up Aug-Sep 2026,Disclosed share in next filings

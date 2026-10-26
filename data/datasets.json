@@ -1,0 +1,259 @@
+{
+ "name": "Anthropic IPO dashboard datasets",
+ "source_filing": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+ "as_of": "2026-10-26",
+ "license": "CC-BY-4.0",
+ "datasets": [
+  {
+   "id": "annual_pl",
+   "title": "Statement of operations",
+   "description": "Annual and half-year P&L lines in US$ millions from the S-1 summary consolidated financial data and non-GAAP table.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/annual_pl.json",
+   "csv": "data/csv/annual_pl.csv",
+   "rows": 5,
+   "columns": [
+    "period",
+    "revenue",
+    "compute",
+    "personnel",
+    "bartz",
+    "smp",
+    "other",
+    "opex",
+    "op_income",
+    "sbc",
+    "adj_op_income",
+    "fv_change",
+    "interest",
+    "net_loss"
+   ]
+  },
+  {
+   "id": "quarterly",
+   "title": "Quarterly revenue",
+   "description": "Quarterly revenue in US$ millions: Q4 2024 from S-1 risk factors, Q1 2025-Q2 2026 from the S-1 quarterly table, Q3 2026 as reported by FT/Reuters (S-1 states it as 86x Q4 2024).",
+   "basis": "S-1 + press",
+   "json": "data/json/quarterly.json",
+   "csv": "data/csv/quarterly.csv",
+   "rows": 8,
+   "columns": [
+    "quarter",
+    "revenue",
+    "basis"
+   ]
+  },
+  {
+   "id": "compute_eff",
+   "title": "Compute efficiency by quarter",
+   "description": "Compute and infrastructure expense (US$ M) and revenue per compute dollar, from S-1 quarterly percentages as reported by Yahoo Finance and ZeroHedge.",
+   "basis": "S-1 via press",
+   "json": "data/json/compute_eff.json",
+   "csv": "data/csv/compute_eff.csv",
+   "rows": 3,
+   "columns": [
+    "quarter",
+    "compute",
+    "rev_per_compute",
+    "compute_pct_rev"
+   ]
+  },
+  {
+   "id": "q_opinc",
+   "title": "Operating income by period",
+   "description": "GAAP operating income in US$ millions; Q1 2026 derived as H1 2026 less Q2 2026.",
+   "basis": "S-1 (filed/derived)",
+   "json": "data/json/q_opinc.json",
+   "csv": "data/csv/q_opinc.csv",
+   "rows": 3,
+   "columns": [
+    "quarter",
+    "op_income"
+   ]
+  },
+  {
+   "id": "channel_mix",
+   "title": "Cloud marketplace channel",
+   "description": "Share of revenue and of net receivables through AWS, Google Cloud and Azure marketplaces.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/channel_mix.json",
+   "csv": "data/csv/channel_mix.csv",
+   "rows": 4,
+   "columns": [
+    "period",
+    "csp_share",
+    "ar_share"
+   ]
+  },
+  {
+   "id": "pricing_mix",
+   "title": "Consumption vs subscription",
+   "description": "H1 2026 revenue by pricing model in US$ millions.",
+   "basis": "S-1 via CNBC",
+   "json": "data/json/pricing_mix.json",
+   "csv": "data/csv/pricing_mix.csv",
+   "rows": 2,
+   "columns": [
+    "model",
+    "revenue",
+    "share"
+   ]
+  },
+  {
+   "id": "customers",
+   "title": "$100K+ customers over time",
+   "description": "Customers with $100K+ trailing-12-month revenue (Dec 2023 figure as reported).",
+   "basis": "S-1 (filed)",
+   "json": "data/json/customers.json",
+   "csv": "data/csv/customers.csv",
+   "rows": 5,
+   "columns": [
+    "date",
+    "c100k"
+   ]
+  },
+  {
+   "id": "kpis",
+   "title": "Key S-1 metrics",
+   "description": "Point-in-time metrics (customers, NRR, cash, capital, concentration, governance, SBC, share prices) plus Q3 2026 revenue as reported to investors.",
+   "basis": "S-1 + press",
+   "json": "data/json/kpis.json",
+   "csv": "data/csv/kpis.csv",
+   "rows": 25,
+   "columns": [
+    "key",
+    "label",
+    "value",
+    "unit"
+   ]
+  },
+  {
+   "id": "people",
+   "title": "Headcount and productivity",
+   "description": "Employee count and TTM revenue per employee (US$ M).",
+   "basis": "S-1 (filed)",
+   "json": "data/json/people.json",
+   "csv": "data/csv/people.csv",
+   "rows": 3,
+   "columns": [
+    "date",
+    "headcount",
+    "rev_per_emp"
+   ]
+  },
+  {
+   "id": "sbc",
+   "title": "Personnel and SBC",
+   "description": "Personnel expense and stock-based compensation in US$ millions.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/sbc.json",
+   "csv": "data/csv/sbc.csv",
+   "rows": 5,
+   "columns": [
+    "period",
+    "sbc",
+    "personnel"
+   ]
+  },
+  {
+   "id": "commitments",
+   "title": "Compute commitments",
+   "description": "Commitments by counterparty in US$ billions from S-1 MD&A; Google TPU 2028-31 (low end of $125-150B) and AMD are company estimates outside the contractual table.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/commitments.json",
+   "csv": "data/csv/commitments.csv",
+   "rows": 9,
+   "columns": [
+    "counterparty",
+    "amount",
+    "terms",
+    "type"
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation reference points",
+   "description": "Series H post-money (May 2026) and press-reported IPO valuation marks, US$ billions.",
+   "basis": "Press",
+   "json": "data/json/valuation.json",
+   "csv": "data/csv/valuation.csv",
+   "rows": 3,
+   "columns": [
+    "case",
+    "value_b"
+   ]
+  },
+  {
+   "id": "risks",
+   "title": "Sample risk assessment",
+   "description": "Ten risks from the S-1 risk factors with likelihood and impact scored 1-5 as an analyst judgment.",
+   "basis": "Analyst estimate",
+   "json": "data/json/risks.json",
+   "csv": "data/csv/risks.csv",
+   "rows": 10,
+   "columns": [
+    "id",
+    "risk",
+    "category",
+    "likelihood",
+    "impact",
+    "s1",
+    "mitigant",
+    "watch"
+   ]
+  },
+  {
+   "id": "product_priorities",
+   "title": "Sample product priorities",
+   "description": "Top-5 product priorities ranked as an analyst judgment; supporting figures from the S-1.",
+   "basis": "Analyst estimate",
+   "json": "data/json/product_priorities.json",
+   "csv": "data/csv/product_priorities.csv",
+   "rows": 5,
+   "columns": [
+    "rank",
+    "priority",
+    "why",
+    "kpi",
+    "horizon"
+   ]
+  },
+  {
+   "id": "competitors",
+   "title": "Competitor snapshot",
+   "description": "Press-reported scale and valuation for direct competitors, with threat level and positioning as analyst judgment.",
+   "basis": "Press + analyst",
+   "json": "data/json/competitors.json",
+   "csv": "data/csv/competitors.csv",
+   "rows": 6,
+   "columns": [
+    "name",
+    "type",
+    "revenue_b",
+    "revenue_basis",
+    "valuation_b",
+    "valuation_basis",
+    "threat",
+    "overlap",
+    "edge"
+   ]
+  },
+  {
+   "id": "forecast_assumptions",
+   "title": "Sample forecast assumptions",
+   "description": "Scenario assumptions (not company guidance): Q4 2026 revenue (US$ M), FY2027/FY2028 growth, FY2028 operating margin, probability.",
+   "basis": "Analyst estimate",
+   "json": "data/json/forecast_assumptions.json",
+   "csv": "data/csv/forecast_assumptions.csv",
+   "rows": 3,
+   "columns": [
+    "scenario",
+    "q4_2026",
+    "g2027",
+    "g2028",
+    "op_margin_2028",
+    "probability"
+   ]
+  }
+ ]
+}

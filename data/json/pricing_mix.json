@@ -1,0 +1,12 @@
+[
+ {
+  "model": "Consumption (pay-for-intelligence, tokens)",
+  "revenue": 13100,
+  "share": 0.8
+ },
+ {
+  "model": "Subscriptions (Pro, Max, Team, Enterprise)",
+  "revenue": 3200,
+  "share": 0.2
+ }
+]

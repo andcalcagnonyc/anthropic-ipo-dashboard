@@ -1,0 +1,27 @@
+[
+ {
+  "period": "FY2023",
+  "sbc": 29,
+  "personnel": 95
+ },
+ {
+  "period": "FY2024",
+  "sbc": 192,
+  "personnel": 454
+ },
+ {
+  "period": "FY2025",
+  "sbc": 1200,
+  "personnel": 1839
+ },
+ {
+  "period": "H1 2025",
+  "sbc": 286,
+  "personnel": 538
+ },
+ {
+  "period": "H1 2026",
+  "sbc": 2200,
+  "personnel": 3152
+ }
+]

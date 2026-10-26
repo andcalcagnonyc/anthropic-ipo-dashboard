@@ -1,0 +1,10 @@
+The datasets in this folder are licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "Anthropic IPO Dashboard by Andrea Calcagno"
+(https://github.com/andcalcagnonyc/anthropic-ipo-dashboard).
+
+Underlying company figures come from Anthropic, PBC's public Form S-1 filed with the
+U.S. SEC on October 26, 2026, and from press reporting as noted in datasets.json.
+Analyst-estimate datasets (risks, product_priorities, forecast_assumptions) are
+illustrative and not investment advice.

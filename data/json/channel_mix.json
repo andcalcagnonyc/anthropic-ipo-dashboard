@@ -1,0 +1,22 @@
+[
+ {
+  "period": "FY2023",
+  "csp_share": 0.11,
+  "ar_share": null
+ },
+ {
+  "period": "FY2024",
+  "csp_share": 0.32,
+  "ar_share": 0.42
+ },
+ {
+  "period": "FY2025",
+  "csp_share": 0.47,
+  "ar_share": 0.6
+ },
+ {
+  "period": "H1 2026",
+  "csp_share": 0.48,
+  "ar_share": 0.58
+ }
+]

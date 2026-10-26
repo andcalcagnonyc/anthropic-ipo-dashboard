@@ -1,0 +1,152 @@
+[
+ {
+  "key": "rev_h1",
+  "label": "H1 2026 revenue",
+  "value": 16286,
+  "unit": "$M"
+ },
+ {
+  "key": "rev_growth_h1",
+  "label": "H1 revenue growth YoY",
+  "value": 13.0,
+  "unit": "x100%"
+ },
+ {
+  "key": "q2_growth",
+  "label": "Q2 2026 revenue growth YoY",
+  "value": 13.68,
+  "unit": "x100%"
+ },
+ {
+  "key": "q2_op_income",
+  "label": "Q2 2026 GAAP operating income",
+  "value": 974,
+  "unit": "$M"
+ },
+ {
+  "key": "adj_op_margin_h1",
+  "label": "H1 2026 adjusted operating margin",
+  "value": 0.1,
+  "unit": "%"
+ },
+ {
+  "key": "nrr",
+  "label": "Net revenue retention (Sep 2026)",
+  "value": 9.0,
+  "unit": "x100%"
+ },
+ {
+  "key": "c1m",
+  "label": "Customers >$1M TTM",
+  "value": 1900,
+  "unit": "#"
+ },
+ {
+  "key": "c10m",
+  "label": "Customers >$10M TTM",
+  "value": 250,
+  "unit": "#"
+ },
+ {
+  "key": "cash",
+  "label": "Cash + short-term investments (Jun 2026)",
+  "value": 131651,
+  "unit": "$M"
+ },
+ {
+  "key": "raised",
+  "label": "Total capital raised",
+  "value": 141100,
+  "unit": "$M"
+ },
+ {
+  "key": "ocf_h1",
+  "label": "Operating cash flow H1 2026",
+  "value": 3900,
+  "unit": "$M"
+ },
+ {
+  "key": "ocf_h1_prev",
+  "label": "Operating cash flow H1 2025",
+  "value": -1500,
+  "unit": "$M"
+ },
+ {
+  "key": "accum_deficit",
+  "label": "Accumulated deficit",
+  "value": -132902,
+  "unit": "$M"
+ },
+ {
+  "key": "top5",
+  "label": "Top-5 customer share (9M 2026)",
+  "value": 0.25,
+  "unit": "%"
+ },
+ {
+  "key": "policy_rev",
+  "label": "Revenue from later-restricted users (9M 2026, midpoint)",
+  "value": 0.06,
+  "unit": "%"
+ },
+ {
+  "key": "new_model_rev",
+  "label": "Q3 revenue from models released in prior 6 months",
+  "value": 0.8,
+  "unit": "%"
+ },
+ {
+  "key": "channel_fee_incr",
+  "label": "Increase in channel-partner fees H1 YoY",
+  "value": 2700,
+  "unit": "$M"
+ },
+ {
+  "key": "unrec_sbc",
+  "label": "Unrecognized RSU SBC (Jun 2026)",
+  "value": 26600,
+  "unit": "$M"
+ },
+ {
+  "key": "undrawn_conv",
+  "label": "Undrawn vendor convertible capacity",
+  "value": 77000,
+  "unit": "$M"
+ },
+ {
+  "key": "seriesH_px",
+  "label": "Series H-1 price / share",
+  "value": 589.01,
+  "unit": "$"
+ },
+ {
+  "key": "seriesG_px",
+  "label": "Series G-1 price / share",
+  "value": 259.14,
+  "unit": "$"
+ },
+ {
+  "key": "seriesH_post",
+  "label": "Series H post-money valuation",
+  "value": 965000,
+  "unit": "$M"
+ },
+ {
+  "key": "q3_rev",
+  "label": "Q3 2026 revenue (reported)",
+  "value": 16800,
+  "unit": "$M"
+ },
+ {
+  "key": "founder_vote",
+  "label": "Founder LLC voting power",
+  "value": 0.501,
+  "unit": "%"
+ },
+ {
+  "key": "pb_fund",
+  "label": "Public Benefit Fund stake",
+  "value": 0.05,
+  "unit": "%"
+ }
+]

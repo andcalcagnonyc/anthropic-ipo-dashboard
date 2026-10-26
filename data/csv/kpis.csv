@@ -1,0 +1,26 @@
+key,label,value,unit
+rev_h1,H1 2026 revenue,16286,$M
+rev_growth_h1,H1 revenue growth YoY,13.0,x100%
+q2_growth,Q2 2026 revenue growth YoY,13.68,x100%
+q2_op_income,Q2 2026 GAAP operating income,974,$M
+adj_op_margin_h1,H1 2026 adjusted operating margin,0.1,%
+nrr,Net revenue retention (Sep 2026),9.0,x100%
+c1m,Customers >$1M TTM,1900,#
+c10m,Customers >$10M TTM,250,#
+cash,Cash + short-term investments (Jun 2026),131651,$M
+raised,Total capital raised,141100,$M
+ocf_h1,Operating cash flow H1 2026,3900,$M
+ocf_h1_prev,Operating cash flow H1 2025,-1500,$M
+accum_deficit,Accumulated deficit,-132902,$M
+top5,Top-5 customer share (9M 2026),0.25,%
+policy_rev,"Revenue from later-restricted users (9M 2026, midpoint)",0.06,%
+new_model_rev,Q3 revenue from models released in prior 6 months,0.8,%
+channel_fee_incr,Increase in channel-partner fees H1 YoY,2700,$M
+unrec_sbc,Unrecognized RSU SBC (Jun 2026),26600,$M
+undrawn_conv,Undrawn vendor convertible capacity,77000,$M
+seriesH_px,Series H-1 price / share,589.01,$
+seriesG_px,Series G-1 price / share,259.14,$
+seriesH_post,Series H post-money valuation,965000,$M
+q3_rev,Q3 2026 revenue (reported),16800,$M
+founder_vote,Founder LLC voting power,0.501,%
+pb_fund,Public Benefit Fund stake,0.05,%

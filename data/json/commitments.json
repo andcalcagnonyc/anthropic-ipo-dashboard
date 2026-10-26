@@ -1,0 +1,56 @@
+[
+ {
+  "counterparty": "Broadcom (TPU equipment leases)",
+  "amount": 161.2,
+  "terms": "5-yr finance leases, rent excl. interest",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "SpaceXAI (NVIDIA GPUs)",
+  "amount": 120.5,
+  "terms": "Up to; into 2029; cancelable on 90 days after Jan/Mar 2027",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Google Cloud",
+  "amount": 114.5,
+  "terms": "At least; Apr 2026 - Jul 2033; take-or-pay with true-up",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Amazon (AWS)",
+  "amount": 110.0,
+  "terms": "At least; May 2026 - Apr 2036; true-up",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Microsoft Azure",
+  "amount": 44.9,
+  "terms": "At least; Nov 2026 - May 2033",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Nscale",
+  "amount": 44.6,
+  "terms": "Up to; into 2033; financing-contingent",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Lambda",
+  "amount": 41.3,
+  "terms": "About; into 2034; $34.9B tied to facility lease",
+  "type": "Contracted"
+ },
+ {
+  "counterparty": "Google TPU 2028-31 (estimate)",
+  "amount": 125.0,
+  "terms": "Company estimate $125-150B, outside contractual table",
+  "type": "Estimated"
+ },
+ {
+  "counterparty": "AMD Helios (estimate)",
+  "amount": 20.0,
+  "terms": "Expected to exceed $20B from 2027, outside table",
+  "type": "Estimated"
+ }
+]

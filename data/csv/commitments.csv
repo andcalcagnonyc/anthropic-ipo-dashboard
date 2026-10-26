@@ -1,0 +1,10 @@
+counterparty,amount,terms,type
+Broadcom (TPU equipment leases),161.2,"5-yr finance leases, rent excl. interest",Contracted
+SpaceXAI (NVIDIA GPUs),120.5,Up to; into 2029; cancelable on 90 days after Jan/Mar 2027,Contracted
+Google Cloud,114.5,At least; Apr 2026 - Jul 2033; take-or-pay with true-up,Contracted
+Amazon (AWS),110.0,At least; May 2026 - Apr 2036; true-up,Contracted
+Microsoft Azure,44.9,At least; Nov 2026 - May 2033,Contracted
+Nscale,44.6,Up to; into 2033; financing-contingent,Contracted
+Lambda,41.3,About; into 2034; $34.9B tied to facility lease,Contracted
+Google TPU 2028-31 (estimate),125.0,"Company estimate $125-150B, outside contractual table",Estimated
+AMD Helios (estimate),20.0,"Expected to exceed $20B from 2027, outside table",Estimated
