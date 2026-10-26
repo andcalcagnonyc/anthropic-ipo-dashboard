@@ -1,0 +1,50 @@
+[
+ {
+  "round": "Series A",
+  "price": 2.57,
+  "liq_pref": 125,
+  "timing": "Early"
+ },
+ {
+  "round": "Series B",
+  "price": 11.23,
+  "liq_pref": 982,
+  "timing": "Early"
+ },
+ {
+  "round": "Series C",
+  "price": 11.23,
+  "liq_pref": 446,
+  "timing": "Early"
+ },
+ {
+  "round": "Series D",
+  "price": 30.0,
+  "liq_pref": 1321,
+  "timing": "Pre-2025"
+ },
+ {
+  "round": "Series E",
+  "price": 56.09,
+  "liq_pref": 8338,
+  "timing": "Pre-2025"
+ },
+ {
+  "round": "Series F",
+  "price": 140.97,
+  "liq_pref": 13434,
+  "timing": "2025"
+ },
+ {
+  "round": "Series G",
+  "price": 259.14,
+  "liq_pref": 46409,
+  "timing": "Q1 2026"
+ },
+ {
+  "round": "Series H",
+  "price": 589.01,
+  "liq_pref": 65231,
+  "timing": "Q2 2026"
+ }
+]

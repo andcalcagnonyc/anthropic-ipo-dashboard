@@ -1,0 +1,13 @@
+key,label,value
+pbf_shares,Class N shares given to Public Benefit Fund,846840960
+pbf_pct,Public Benefit Fund share of fully diluted (Jun 2026),0.05
+amazon_cap,Amazon note-conversion ownership cap,0.12
+google_cap,Google ownership cap (2026 note agreement),0.1499
+founder_vote,Founder LLC voting power (Class F),0.501
+classA_vote,Maximum voting power of all Class A holders,0.499
+board_size,"Directors (Sep 30, 2026)",6
+class_t_directors,Directors elected by Class T (LTBT),3
+trustee_seats,Authorized LTBT trustee seats,5
+trustees_in_office,Trustees in office,4
+pref_liq,"Preferred liquidation preference (Jun 2026, $M)",136286
+raised,Total capital raised ($M),141100

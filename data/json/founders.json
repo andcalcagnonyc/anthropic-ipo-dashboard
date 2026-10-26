@@ -1,0 +1,44 @@
+[
+ {
+  "name": "Dario Amodei",
+  "role": "CEO, co-founder, director",
+  "shares": 245259100,
+  "note": "Incl. 4.6M shares under voting proxies from donor-advised funds"
+ },
+ {
+  "name": "Tom Brown",
+  "role": "Co-founder",
+  "shares": 244173040,
+  "note": "Selling stockholder"
+ },
+ {
+  "name": "Christopher Olah",
+  "role": "Co-founder",
+  "shares": 242882420,
+  "note": "Selling stockholder"
+ },
+ {
+  "name": "Jared Kaplan",
+  "role": "Co-founder",
+  "shares": 242351170,
+  "note": "Selling stockholder"
+ },
+ {
+  "name": "Jack Clark",
+  "role": "Co-founder",
+  "shares": 242271840,
+  "note": "Selling stockholder"
+ },
+ {
+  "name": "Daniela Amodei",
+  "role": "President, co-founder, chair",
+  "shares": 241408940,
+  "note": "Incl. spouse's options and RSUs"
+ },
+ {
+  "name": "Sam McCandlish",
+  "role": "Co-founder",
+  "shares": 231809780,
+  "note": "Selling stockholder"
+ }
+]

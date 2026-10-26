@@ -1,0 +1,65 @@
+[
+ {
+  "name": "Dario Amodei",
+  "position": "CEO, co-founder, director",
+  "since": "Jan 2021",
+  "age": 43,
+  "elected_by": "Class A + F",
+  "committees": "\u2014",
+  "background": "Ex-VP Research, OpenAI; Google Brain"
+ },
+ {
+  "name": "Daniela Amodei",
+  "position": "President, co-founder, chair",
+  "since": "Jan 2021",
+  "age": 39,
+  "elected_by": "Class A + F",
+  "committees": "Nominating & governance",
+  "background": "Ex-VP Safety & Policy, OpenAI; Stripe"
+ },
+ {
+  "name": "Reed Hastings",
+  "position": "Lead independent director",
+  "since": "May 2025",
+  "age": 65,
+  "elected_by": "Class T (LTBT)",
+  "committees": "Audit; nominating & governance",
+  "background": "Netflix co-founder, ex-CEO and chair"
+ },
+ {
+  "name": "Christopher Liddell",
+  "position": "Independent director",
+  "since": "Feb 2026",
+  "age": 68,
+  "elected_by": "Class T (LTBT)",
+  "committees": "Audit; safety & risk",
+  "background": "Ex-CFO Microsoft and GM; ex-White House Deputy Chief of Staff"
+ },
+ {
+  "name": "Vas Narasimhan",
+  "position": "Independent director",
+  "since": "Apr 2026",
+  "age": 50,
+  "elected_by": "Class T (LTBT)",
+  "committees": "Compensation; safety & risk",
+  "background": "CEO, Novartis"
+ },
+ {
+  "name": "Yasmin Razavi",
+  "position": "Director",
+  "since": "Mar 2023",
+  "age": 37,
+  "elected_by": "Class A + F",
+  "committees": "Compensation; nominating & governance",
+  "background": "General Partner, Spark Capital"
+ },
+ {
+  "name": "Krishna Rao",
+  "position": "Chief Financial Officer (not a director)",
+  "since": "Apr 2024",
+  "age": 43,
+  "elected_by": "\u2014",
+  "committees": "\u2014",
+  "background": "Ex-CFO Fanatics Commerce, Cedar; Airbnb; Blackstone"
+ }
+]

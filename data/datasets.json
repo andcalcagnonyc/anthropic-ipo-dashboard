@@ -254,6 +254,101 @@
     "op_margin_2028",
     "probability"
    ]
+  },
+  {
+   "id": "founders",
+   "title": "Co-founder shareholdings",
+   "description": "Class A shares beneficially owned by each co-founder at Sep 30, 2026 (post 10-for-1 split).",
+   "basis": "S-1 (filed)",
+   "json": "data/json/founders.json",
+   "csv": "data/csv/founders.csv",
+   "rows": 7,
+   "columns": [
+    "name",
+    "role",
+    "shares",
+    "note"
+   ]
+  },
+  {
+   "id": "captable_facts",
+   "title": "Cap table and control facts",
+   "description": "Public Benefit Fund grant, Amazon/Google ownership caps, Class F/Class A voting power, board and trustee seats, preferred liquidation preference.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/captable_facts.json",
+   "csv": "data/csv/captable_facts.csv",
+   "rows": 12,
+   "columns": [
+    "key",
+    "label",
+    "value"
+   ]
+  },
+  {
+   "id": "funding_rounds",
+   "title": "Funding rounds",
+   "description": "Original issue price of each round's voting preferred series and total liquidation preference per round (US$ M).",
+   "basis": "S-1 (filed)",
+   "json": "data/json/funding_rounds.json",
+   "csv": "data/csv/funding_rounds.csv",
+   "rows": 8,
+   "columns": [
+    "round",
+    "price",
+    "liq_pref",
+    "timing"
+   ]
+  },
+  {
+   "id": "board",
+   "title": "Board and executive officers",
+   "description": "Directors and officers with age, start date, electing class, committees and background.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/board.json",
+   "csv": "data/csv/board.csv",
+   "rows": 7,
+   "columns": [
+    "name",
+    "position",
+    "since",
+    "age",
+    "elected_by",
+    "committees",
+    "background"
+   ]
+  },
+  {
+   "id": "trustees",
+   "title": "Long-Term Benefit Trust trustees",
+   "description": "LTBT trustees, start dates and backgrounds; one of five seats vacant.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/trustees.json",
+   "csv": "data/csv/trustees.csv",
+   "rows": 5,
+   "columns": [
+    "name",
+    "role",
+    "since",
+    "background"
+   ]
+  },
+  {
+   "id": "exec_comp",
+   "title": "Executive compensation 2025",
+   "description": "Summary Compensation Table for named executive officers, US$.",
+   "basis": "S-1 (filed)",
+   "json": "data/json/exec_comp.json",
+   "csv": "data/csv/exec_comp.csv",
+   "rows": 3,
+   "columns": [
+    "name",
+    "title",
+    "salary",
+    "stock",
+    "options",
+    "other",
+    "total"
+   ]
   }
  ]
 }

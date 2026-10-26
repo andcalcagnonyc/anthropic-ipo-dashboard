@@ -1,0 +1,29 @@
+[
+ {
+  "name": "Dario Amodei",
+  "title": "CEO",
+  "salary": 654167,
+  "stock": 9264932,
+  "options": 4028558,
+  "other": 4010641,
+  "total": 17958298
+ },
+ {
+  "name": "Daniela Amodei",
+  "title": "President",
+  "salary": 654167,
+  "stock": 9264932,
+  "options": 4028558,
+  "other": 2461341,
+  "total": 16408998
+ },
+ {
+  "name": "Krishna Rao",
+  "title": "CFO",
+  "salary": 706250,
+  "stock": 0,
+  "options": 0,
+  "other": 14000,
+  "total": 720250
+ }
+]

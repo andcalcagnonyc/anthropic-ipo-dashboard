@@ -1,0 +1,62 @@
+[
+ {
+  "key": "pbf_shares",
+  "label": "Class N shares given to Public Benefit Fund",
+  "value": 846840960
+ },
+ {
+  "key": "pbf_pct",
+  "label": "Public Benefit Fund share of fully diluted (Jun 2026)",
+  "value": 0.05
+ },
+ {
+  "key": "amazon_cap",
+  "label": "Amazon note-conversion ownership cap",
+  "value": 0.12
+ },
+ {
+  "key": "google_cap",
+  "label": "Google ownership cap (2026 note agreement)",
+  "value": 0.1499
+ },
+ {
+  "key": "founder_vote",
+  "label": "Founder LLC voting power (Class F)",
+  "value": 0.501
+ },
+ {
+  "key": "classA_vote",
+  "label": "Maximum voting power of all Class A holders",
+  "value": 0.499
+ },
+ {
+  "key": "board_size",
+  "label": "Directors (Sep 30, 2026)",
+  "value": 6
+ },
+ {
+  "key": "class_t_directors",
+  "label": "Directors elected by Class T (LTBT)",
+  "value": 3
+ },
+ {
+  "key": "trustee_seats",
+  "label": "Authorized LTBT trustee seats",
+  "value": 5
+ },
+ {
+  "key": "trustees_in_office",
+  "label": "Trustees in office",
+  "value": 4
+ },
+ {
+  "key": "pref_liq",
+  "label": "Preferred liquidation preference (Jun 2026, $M)",
+  "value": 136286
+ },
+ {
+  "key": "raised",
+  "label": "Total capital raised ($M)",
+  "value": 141100
+ }
+]

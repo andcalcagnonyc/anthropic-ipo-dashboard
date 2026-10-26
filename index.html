@@ -87,6 +87,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 .lx tr:hover td{background:var(--acc-soft)}
 .lx td.wrap{white-space:normal;text-align:left;color:var(--mut);min-width:14rem}
 .lx td.l{text-align:left}
+.lx table.txt th,.lx table.txt td{text-align:left}
 .lx .neg{color:var(--color-bad)} .lx .pos{color:var(--color-ok)}
 .lx ul.pts{margin:0;padding-left:1.05em;font-size:13px;line-height:1.55}
 .lx ul.pts li{margin-bottom:5px}
@@ -121,15 +122,18 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
  <a href="#s-costs"><span>03</span>Costs & margins</a>
  <a href="#s-invest"><span>04</span>Investment & capital</a>
  <a href="#s-people"><span>05</span>People</a>
+ <div class="lx-grp">Ownership</div>
+ <a href="#s-captable"><span>06</span>Cap table & control</a>
+ <a href="#s-mgmt"><span>07</span>Management & governance</a>
  <div class="lx-grp">Strategy</div>
- <a href="#s-strategy"><span>06</span>Strategy & governance</a>
- <a href="#s-product"><span>07</span>Product priorities</a>
- <a href="#s-competition"><span>08</span>Competition</a>
- <a href="#s-risks"><span>09</span>Risks</a>
+ <a href="#s-strategy"><span>08</span>Strategy</a>
+ <a href="#s-product"><span>09</span>Product priorities</a>
+ <a href="#s-competition"><span>10</span>Competition</a>
+ <a href="#s-risks"><span>11</span>Risks</a>
  <div class="lx-grp">Future</div>
- <a href="#s-forecast"><span>10</span>Forecast</a>
- <a href="#s-sensitivity"><span>11</span>Sensitivity</a>
- <a href="#s-valuation"><span>12</span>Valuation & verdict</a>
+ <a href="#s-forecast"><span>12</span>Forecast</a>
+ <a href="#s-sensitivity"><span>13</span>Sensitivity</a>
+ <a href="#s-valuation"><span>14</span>Valuation & verdict</a>
  <div class="lx-credit">Designed by<br><a href="https://www.linkedin.com/in/andreacalcagno/" target="_blank" rel="noopener">Andrea Calcagno ↗</a></div>
 </nav>
 
@@ -230,31 +234,68 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 <div class="card"><h3>Personnel cost and stock-based compensation</h3><p class="note">US$. SBC is included in personnel.</p><div class="legend" id="lg-sbc"></div><div class="chart" id="c-sbc" data-source="sbc"></div></div>
 </section>
 
-<!-- 06 STRATEGY -->
-<section id="s-strategy">
-<div class="lx-sh"><span>06</span><h2>Strategy & governance</h2></div>
-<p class="note2">An enterprise-first research lab whose products (Claude Platform, Claude Code, Cowork) are channels for model capability.</p>
+<!-- 06 CAP TABLE -->
+<section id="s-captable">
+<div class="lx-sh"><span>06</span><h2>Cap table & control</h2></div>
+<p class="note2">Economics and votes are deliberately separated. Strategic investors hold non-voting Class N stock; one Class F share gives the seven co-founders a fixed majority of votes; one Class T share lets the Long-Term Benefit Trust elect a majority of the board. Percentages in the S-1 table are still blank, so economic stakes below are estimates.</p>
+<div class="tiles">
+ <div class="tile"><div class="l">Founder LLC voting power</div><div class="v" data-source="captable_facts" data-field="value" data-where="key=founder_vote">—</div><div class="n">one Class F share, no economics</div></div>
+ <div class="tile"><div class="l">Max. voting power of all Class A holders</div><div class="v" data-source="captable_facts" data-field="value" data-where="key=classA_vote">—</div><div class="n">public float included</div></div>
+ <div class="tile"><div class="l">Board seats elected by the LTBT</div><div class="v" data-source="captable_facts" data-field="value" data-where="key=class_t_directors">—</div><div class="n">of <span data-source="captable_facts" data-field="value" data-where="key=board_size">—</span> directors today</div></div>
+ <div class="tile"><div class="l">Implied fully diluted shares</div><div class="v" data-source="ownership_est" data-field="fd_shares" data-where="holder=Co-founders (7)">—</div><div class="n">from the Public Benefit Fund grant</div></div>
+ <div class="tile"><div class="l">Preferred liquidation preference</div><div class="v" data-source="captable_facts" data-field="value" data-where="key=pref_liq">—</div><div class="n">converts to common at IPO</div></div>
+</div>
 <div class="grid">
- <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Growth strategy (S-1)</span><h3>Seven stated pillars</h3>
-  <ul class="pts"><li><b>Talent & culture</b>: mission-aligned, low-ego research culture.</li><li><b>Compute</b>: capacity beyond current deals, own data centers ("Anthropic Direct"), multi-chip fleet.</li><li><b>Capability & safety together</b>: "closing the loop", each model helps build the next.</li><li><b>Accessibility</b>: every surface, all three hyperscaler clouds.</li><li><b>Adoption</b>: direct sales, forward-deployed Applied AI, SIs, Ode with Anthropic.</li><li><b>New markets</b>: life sciences, robotics, physical work.</li><li><b>M&A and partnerships</b>, selectively.</li></ul></div>
- <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Governance</span><h3>Controlled company by design</h3>
+ <div class="card"><h3>Who votes vs who owns</h3><p class="note">Voting power after the offering (filed) against estimated economic ownership. Google and Amazon are shown at their contractual ownership caps, an upper bound.</p><div class="legend" id="lg-own"></div><div class="chart" id="c-own" data-source="ownership_est captable_facts" style="min-height:190px"></div></div>
+ <div class="card"><h3>Co-founder stakes</h3><p class="note">Class A shares beneficially owned at Sep 30, 2026 (post 10-for-1 split), and estimated share of fully diluted capital.</p><div class="chart" id="c-fnd" data-source="founder_pct" style="min-height:260px"></div></div>
+ <div class="card"><h3>Price per share by round</h3><p class="note">Original issue price of each round's voting preferred series, US$, log scale. Series H was priced 2.3× Series G within one quarter.</p><div class="chart" id="c-rnd" data-source="funding_rounds"></div></div>
+ <div class="card"><h3>Liquidation preference by round</h3><p class="note">US$ millions, all series of each round. Series G and H together are most of the total.</p><div class="chart" id="c-liq" data-source="funding_rounds"></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Estimated ownership table</h3><p class="note">Analyst estimate. Co-founders and Public Benefit Fund are computed from filed share counts; Google and Amazon at caps; the remainder covers other investors, employees and the option pool.</p>
+ <div class="tbl"><table class="txt" id="t-own" data-source="ownership_est" data-row-key="holder"><thead><tr><th data-field="holder">Holder</th><th data-field="pct">Est. economic stake</th><th data-field="votes">Votes</th><th data-field="basis">Basis</th></tr></thead><tbody></tbody></table></div></div>
+<div class="card" style="margin-top:12px"><h3>What control means for an IPO buyer</h3>
+ <ul class="pts"><li><b>No change of control without the founders</b>: the Founder LLC votes as one block, decided one vote per continuing founder; public holders can never reach a majority.</li><li><b>The board answers to the Trust</b>: Class T directors are a majority of authorized seats, and the Trust's terms change only with supermajorities or founder consent.</li><li><b>Strategics own without voting</b>: Amazon and Google hold non-voting Class N stock, convertible to Class A only on sale to an unaffiliated party.</li><li><b>Dilution ratchet</b>: up to a further 2% to the Public Benefit Fund each time the share price rises 50% above the prior milestone.</li><li><b>Lock-up</b>: co-founders and holders above 0.5% are locked up until after the Q3 2027 earnings release; five co-founders are selling stockholders in the IPO.</li></ul></div>
+</section>
+
+<!-- 07 MANAGEMENT -->
+<section id="s-mgmt">
+<div class="lx-sh"><span>07</span><h2>Management & governance</h2></div>
+<p class="note2">A founder-led company with a small executive team, a board split between founder-elected and Trust-elected directors, and a five-seat Trust of financially disinterested trustees.</p>
+<div class="grid">
+ <div class="card" style="grid-column:1/-1"><h3>Board of directors and executive officers</h3><p class="note">As of Sep 30, 2026. "Elected by" is the class of stock that elects the seat after the IPO.</p>
+  <div class="tbl"><table class="txt" id="t-board" data-source="board" data-row-key="name"><thead><tr><th data-field="name">Name</th><th data-field="position">Position</th><th data-field="since">Since</th><th data-field="age">Age</th><th data-field="elected_by">Elected by</th><th data-field="committees">Committees</th><th data-field="background">Background</th></tr></thead><tbody></tbody></table></div></div>
+ <div class="card"><h3>Long-Term Benefit Trust</h3><p class="note">Trustees serve annual terms with no term limit and have no economic interest in the company.</p>
+  <div class="tbl"><table class="txt" id="t-trust" data-source="trustees" data-row-key="name"><thead><tr><th data-field="name">Trustee</th><th data-field="role">Role</th><th data-field="since">Since</th><th data-field="background">Background</th></tr></thead><tbody></tbody></table></div></div>
+ <div class="card"><h3>Named executive officers, 2025 compensation</h3><p class="note">US$. Stock and option awards at grant-date fair value; "other" for the Amodeis is mostly personal security.</p><div class="legend" id="lg-comp"></div><div class="chart" id="c-comp2" data-source="exec_comp" style="min-height:170px"></div></div>
+ <div class="card" style="grid-column:1/-1"><h3>Governance assessment</h3>
   <div class="tiles" style="margin:0 0 10px">
    <div class="tile"><div class="l">Founder LLC voting power</div><div class="v" data-source="kpis" data-field="value" data-where="key=founder_vote">—</div></div>
    <div class="tile"><div class="l">Equity to Public Benefit Fund</div><div class="v" data-source="kpis" data-field="value" data-where="key=pb_fund">—</div></div></div>
-  <ul class="pts"><li>Delaware public benefit corporation; the Long-Term Benefit Trust elects a board majority.</li><li>Public Class A holders stay a voting minority; strategic holders own non-voting Class N.</li><li>Further Public Benefit Fund issuances are triggered by share-price milestones.</li></ul></div>
+  <ul class="pts"><li><b>Strengths</b>: heavyweight independent directors (ex-CFO of Microsoft and GM, CEO of Novartis, Netflix co-founder as lead independent); audit and compensation committees fully independent; a dedicated safety and risk committee.</li><li><b>Watch points</b>: controlled-company exemption for the nominating committee; CEO and chair are siblings; one Trust seat vacant and trustees selected together with management.</li><li>Delaware public benefit corporation; the Long-Term Benefit Trust elects a board majority.</li><li>Public Class A holders stay a voting minority; strategic holders own non-voting Class N.</li><li>Further Public Benefit Fund issuances are triggered by share-price milestones.</li></ul></div>
+
+</div>
+</section>
+
+<!-- 08 STRATEGY -->
+<section id="s-strategy">
+<div class="lx-sh"><span>08</span><h2>Strategy</h2></div>
+<p class="note2">An enterprise-first research lab whose products (Claude Platform, Claude Code, Cowork) are channels for model capability. Governance and control are covered in sections 06 and 07.</p>
+<div class="grid">
+ <div class="card"><span class="tag"><b style="background:var(--acc)"></b>Growth strategy (S-1)</span><h3>Seven stated pillars</h3>
+  <ul class="pts"><li><b>Talent & culture</b>: mission-aligned, low-ego research culture.</li><li><b>Compute</b>: capacity beyond current deals, own data centers ("Anthropic Direct"), multi-chip fleet.</li><li><b>Capability & safety together</b>: "closing the loop", each model helps build the next.</li><li><b>Accessibility</b>: every surface, all three hyperscaler clouds.</li><li><b>Adoption</b>: direct sales, forward-deployed Applied AI, SIs, Ode with Anthropic.</li><li><b>New markets</b>: life sciences, robotics, physical work.</li><li><b>M&A and partnerships</b>, selectively.</li></ul></div>
 </div>
 </section>
 
 <!-- 07 PRODUCT -->
 <section id="s-product">
-<div class="lx-sh"><span>07</span><h2>Top 5 product priorities</h2></div>
+<div class="lx-sh"><span>09</span><h2>Top 5 product priorities</h2></div>
 <p class="note2">Ranked by revenue leverage over the next 18 months, drawn from what the S-1 emphasizes. Ranking is an analyst judgment.</p>
 <div class="prio" id="prio" data-source="product_priorities"></div>
 </section>
 
 <!-- 08 COMPETITION -->
 <section id="s-competition">
-<div class="lx-sh"><span>08</span><h2>Direct competition</h2></div>
+<div class="lx-sh"><span>10</span><h2>Direct competition</h2></div>
 <p class="note2">Peer figures are press-reported, not from the S-1, and are not like-for-like: Google's line is all of Google Cloud. Threat level is an analyst judgment.</p>
 <div class="grid">
  <div class="card"><h3>Revenue scale, annualized</h3><p class="note">US$ billions; basis differs by company (hover for basis).</p><div class="chart" id="c-comp" data-source="competitors" style="min-height:200px"></div></div>
@@ -267,7 +308,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 
 <!-- 09 RISKS -->
 <section id="s-risks">
-<div class="lx-sh"><span>09</span><h2>Risks</h2></div>
+<div class="lx-sh"><span>11</span><h2>Risks</h2></div>
 <p class="note2">Ten risks from the S-1's risk factors, scored 1–5 for likelihood and impact over the next 24 months. Scores are an analyst judgment.</p>
 <div class="grid">
  <div class="card"><h3>Risk matrix</h3><p class="note">Top-right is most severe. Hover a point for the risk.</p><div class="chart" id="c-risk" data-source="risks" style="min-height:300px"></div></div>
@@ -278,7 +319,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 
 <!-- 10 FORECAST -->
 <section id="s-forecast">
-<div class="lx-sh"><span>10</span><h2>Forecast</h2></div>
+<div class="lx-sh"><span>12</span><h2>Forecast</h2></div>
 <p class="note2">Illustrative scenarios, not company guidance: the S-1 gives none and says growth will decline. FY2026 = filed H1 + reported Q3 + an assumed Q4; later years apply assumed growth. Probability-weighted line in accent.</p>
 <div class="grid">
  <div class="card"><span class="tag"><b style="background:var(--color-warn)"></b>Illustrative estimate</span><h3>Revenue by scenario, US$ billions</h3><div class="legend" id="lg-fc"></div><div class="chart" id="c-fc" data-source="forecast"></div></div>
@@ -289,7 +330,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 
 <!-- 11 SENSITIVITY -->
 <section id="s-sensitivity">
-<div class="lx-sh"><span>11</span><h2>Sensitivity</h2></div>
+<div class="lx-sh"><span>13</span><h2>Sensitivity</h2></div>
 <p class="note2">How implied value and compute coverage move with the two variables that matter most: FY2027 growth and the multiple the market pays.</p>
 <div class="grid">
  <div class="card"><h3>Implied value, US$ billions</h3><p class="note">Base FY2026E revenue × (1 + FY2027 growth) × EV / forward revenue. Green beats the reported IPO mark, red falls short.</p>
@@ -301,7 +342,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 
 <!-- 12 VALUATION -->
 <section id="s-valuation">
-<div class="lx-sh"><span>12</span><h2>Valuation & banker's verdict</h2></div>
+<div class="lx-sh"><span>14</span><h2>Valuation & banker's verdict</h2></div>
 <div class="grid">
  <div class="card"><h3>Valuation reference points</h3><p class="note">Value ÷ Q3 2026 revenue annualized. Press-reported marks; the S-1 price range is blank.</p>
   <div class="tbl"><table id="t-val" data-source="val_mult" data-row-key="case"><thead><tr><th data-field="case">Reference</th><th data-field="value_b">US$ B</th><th data-field="ev_rev">× run-rate</th></tr></thead><tbody></tbody></table></div>
@@ -358,6 +399,12 @@ dash.calc('sens_tornado',{title:'Drivers of implied value',description:'Base FY2
 dash.calc('sens_compute',{title:'Compute bill vs revenue',description:'Named contracted commitments ÷ 7 years, divided by each scenario\'s FY2027E and FY2028E revenue.',inputs:['commitments','forecast_tbl'],
  fn:(commitments,forecast_tbl)=>{const yr=d3.sum(commitments.filter(r=>r.type==='Contracted'),r=>r.amount)/7;return forecast_tbl.map(r=>({scenario:r.scenario,fy27:yr/r.fy27,fy28:yr/r.fy28}));}});
 
+dash.calc('ownership_est',{title:'Estimated economic ownership',description:'Fully diluted shares implied as Public Benefit Fund shares ÷ 5%; co-founder stake = their filed shares ÷ that total; Google and Amazon at their ownership caps; remainder is other investors, employees and option pool.',inputs:['founders','captable_facts'],
+ fn:(founders,captable_facts)=>{const f=k=>captable_facts.find(r=>r.key===k).value;const fd=f('pbf_shares')/f('pbf_pct');const fp=d3.sum(founders,r=>r.shares)/fd;
+  const rows=[{holder:'Co-founders (7)',pct:fp,votes:'Class A + Class F (50.1% block)',basis:'Filed shares ÷ implied fully diluted',fd_shares:fd},{holder:'Google',pct:f('google_cap'),votes:'None (Class N)',basis:'Upper bound: 14.99% cap'},{holder:'Amazon',pct:f('amazon_cap'),votes:'None (Class N)',basis:'Upper bound: 12% note cap'},{holder:'Anthropic Public Benefit Fund',pct:f('pbf_pct'),votes:'None (Class N)',basis:'Filed: 5% of fully diluted'}];
+  rows.push({holder:'Other investors, employees, option pool',pct:1-d3.sum(rows,r=>r.pct),votes:'Class A (if voting series) or none',basis:'Residual'});return rows;}});
+dash.calc('founder_pct',{title:'Co-founder stakes',description:'Each co-founder\'s filed beneficial Class A shares and that number ÷ implied fully diluted shares.',inputs:['founders','captable_facts'],
+ fn:(founders,captable_facts)=>{const f=k=>captable_facts.find(r=>r.key===k).value;const fd=f('pbf_shares')/f('pbf_pct');return founders.map(r=>({name:r.name,shares:r.shares,pct:r.shares/fd,note:r.note}));}});
 function tipFor(box){let t=box.querySelector('.tip');if(!t){t=document.createElement('div');t.className='tip';box.appendChild(t);}return t;}
 function showTip(box,t,lines,x,y){t.replaceChildren();lines.forEach(([cls,txt])=>{const d=document.createElement('div');if(cls)d.className=cls;d.textContent=txt;t.appendChild(d);});const w=box.clientWidth;t.style.opacity=1;const tw=t.offsetWidth;t.style.left=Math.max(0,Math.min(w-tw,x-tw/2))+'px';t.style.top=Math.max(0,y-t.offsetHeight-10)+'px';}
 function failOr(box,ids){for(const id of ids){const s=dash.data(id).status;if(s!=='ok'){box.querySelectorAll('svg,.fail').forEach(n=>n.remove());if(s==='error'||s==='connect'){const f=document.createElement('div');f.className='fail';f.textContent='Failed to load';box.appendChild(f);}return false;}}box.querySelectorAll('.fail').forEach(n=>n.remove());return true;}
@@ -416,6 +463,8 @@ function fillMarks(){
   else if(id==='cost_per_head')el.textContent='$'+d3.format(',.0f')(v)+'K';
   else if(id==='people')el.textContent=f==='rev_per_emp'?'$'+v+'M':d3.format(',')(v);
   else if(id==='forecast_tbl')el.textContent='~$'+d3.format(',.0f')(v)+'B';
+  else if(id==='captable_facts'){el.textContent=r.key==='pref_liq'?M(v):(v<1?(v===0.501?'50.1%':v===0.499?'49.9%':pct(v)):d3.format(',')(v));}
+  else if(id==='ownership_est')el.textContent='~'+d3.format('.1f')(v/1e9)+'B';
   else el.textContent=M(v);});
 }
 
@@ -485,6 +534,47 @@ dash.onData(()=>{
   rows.forEach(r=>{const x=xS(r.period)+(xS.bandwidth()-bw)/2;svg.append('rect').attr('x',x).attr('width',bw).attr('y',yS(r.personnel)).attr('height',yS(0)-yS(r.personnel)).attr('rx',4).attr('fill',c[0]);
    svg.append('rect').attr('x',x+bw*0.22).attr('width',bw*0.56).attr('y',yS(r.sbc)).attr('height',Math.max(1,yS(0)-yS(r.sbc))).attr('rx',3).attr('fill',c[2]);
    hover(svg.append('rect').datum(r).attr('x',x).attr('width',bw).attr('y',14).attr('height',h-38).attr('fill','transparent'),b,r=>[['t',r.period],[null,'Personnel: '+M(r.personnel)],[null,'SBC: '+M(r.sbc)+' ('+pct(r.sbc/r.personnel)+')']]);});}
+
+ // cap table: votes vs ownership
+ b=document.getElementById('c-own');
+ if(failOr(b,['ownership_est','captable_facts'])){const own=dash.data('ownership_est').data;const cf=dash.data('captable_facts').data;const fv=cf.find(r=>r.key==='founder_vote').value;
+  const cols=[c[0],c[1],c[2],c[3],muted];legend('lg-own',own.map((r,i)=>[r.holder,cols[i]]));
+  const bars2=[{label:'Votes',parts:[{n:'Founder LLC (Class F)',v:fv,c:c[0]},{n:'All Class A holders',v:1-fv,c:muted}]},{label:'Economics (est.)',parts:own.map((r,i)=>({n:r.holder,v:r.pct,c:cols[i]}))}];
+  const h=150;const [svg,w]=svgIn(b,h);const lw=measure(svg,bars2.map(x=>x.label))+12;const xS=d3.scaleLinear([0,1],[lw,w-4]);
+  bars2.forEach((bb,k)=>{const y=12+k*64;txt(svg,lw-8,y+21,bb.label,{a:'end',c:'var(--color-fg)'});let x=0;
+   bb.parts.forEach(p=>{const g=svg.append('rect').datum(p).attr('x',xS(x)+1).attr('y',y).attr('width',Math.max(0,xS(x+p.v)-xS(x)-2)).attr('height',32).attr('rx',4).attr('fill',p.c);hover(g,b,p=>[['t',p.n],[null,pct(p.v)]]);
+    if(xS(x+p.v)-xS(x)>34)txt(svg,xS(x)+4,y+50,(Math.round(p.v*100)===p.v*100?pct(p.v):d3.format('.1%')(p.v)),{c:'var(--color-fg)'});x+=p.v;});});}
+ // founders
+ b=document.getElementById('c-fnd');
+ if(failOr(b,['founder_pct'])){const rows=dash.data('founder_pct').data;const h=rows.length*34+12;const [svg,w]=svgIn(b,h);const lw=measure(svg,rows.map(r=>r.name))+12;const vw=measure(svg,['245.3M · 1.45%'])+8;
+  const xS=d3.scaleLinear([0,d3.max(rows,r=>r.shares)],[lw,w-vw]);const yS=d3.scaleBand(rows.map(r=>r.name),[4,h-4]).padding(0.3);
+  rows.forEach((r,i)=>{txt(svg,lw-8,yS(r.name)+yS.bandwidth()/2+4,r.name,{a:'end',c:'var(--color-fg)'});
+   hover(svg.append('rect').datum(r).attr('x',lw).attr('y',yS(r.name)).attr('height',yS.bandwidth()).attr('width',xS(r.shares)-lw).attr('rx',4).attr('fill',r.name.includes('Amodei')?c[0]:c[1]),b,r=>[['t',r.name],[null,d3.format(',')(r.shares)+' shares'],[null,'~'+d3.format('.2%')(r.pct)+' of fully diluted (est.)'],[null,r.note]]);
+   txt(svg,xS(r.shares)+5,yS(r.name)+yS.bandwidth()/2+4,d3.format('.1f')(r.shares/1e6)+'M · '+d3.format('.2%')(r.pct));});}
+ // rounds price (log)
+ b=document.getElementById('c-rnd');
+ if(failOr(b,['funding_rounds'])){const rows=dash.data('funding_rounds').data;const h=230;const [svg,w]=svgIn(b,h);
+  const yS=d3.scaleLog([1,1000],[h-24,14]);const ticks=[1,10,100,1000];const ml=measure(svg,ticks.map(v=>'$'+v))+8;
+  const xS=d3.scaleBand(rows.map(r=>r.round.replace('Series ','')),[ml,w-4]).padding(0.3);const bw=Math.min(30,xS.bandwidth());
+  const ga=svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(yS).tickValues(ticks).tickFormat(v=>'$'+v).tickSize(-(w-ml-4)));styleAxis(ga);ga.select('.domain').remove();
+  const gx=svg.append('g').attr('transform',`translate(0,${h-24})`).call(d3.axisBottom(xS).tickSize(0).tickPadding(6));styleAxis(gx);
+  rows.forEach(r=>{const k=r.round.replace('Series ','');hover(svg.append('rect').datum(r).attr('x',xS(k)+(xS.bandwidth()-bw)/2).attr('width',bw).attr('y',yS(r.price)).attr('height',yS(1)-yS(r.price)).attr('rx',4).attr('fill',['G','H'].includes(k)?c[0]:c[1]),b,r=>[['t',r.round+' · '+r.timing],[null,'Price per share: $'+d3.format(',.2f')(r.price)]]);
+   txt(svg,xS(k)+xS.bandwidth()/2,yS(r.price)-5,'$'+d3.format(r.price<100?'.2f':',.0f')(r.price),{a:'middle'});});}
+ // liquidation preference
+ b=document.getElementById('c-liq');
+ if(failOr(b,['funding_rounds']))bars(b,dash.data('funding_rounds').data.map(r=>({...r,k:r.round.replace('Series ','')})),{x:'k',y:'liq_pref',fmt:M,color:r=>['G','H'].includes(r.k)?c[0]:c[1],labels:r=>r.liq_pref>=1000?M(r.liq_pref):'',tipLines:r=>[['t',r.round+' · '+r.timing],[null,'Liquidation preference: '+M(r.liq_pref)]]});
+ table('t-own','ownership_est',[['holder'],['pct',v=>'~'+pct(v)],['votes',null,'wrap'],['basis',null,'wrap']]);
+ table('t-board','board',[['name'],['position',null,'wrap'],['since'],['age'],['elected_by'],['committees',null,'wrap'],['background',null,'wrap']]);
+ table('t-trust','trustees',[['name'],['role'],['since'],['background',null,'wrap']]);
+ // exec comp stacked
+ b=document.getElementById('c-comp2');
+ if(failOr(b,['exec_comp'])){const rows=dash.data('exec_comp').data;const keys=[['salary','Salary',c[1]],['stock','Stock awards',c[0]],['options','Option awards',c[2]],['other','Other',c[3]]];legend('lg-comp',keys.map(k=>[k[1],k[2]]));
+  const h=rows.length*40+10;const [svg,w]=svgIn(b,h);const lw=measure(svg,rows.map(r=>r.name))+12;const vw=measure(svg,['$18.0M'])+8;const xS=d3.scaleLinear([0,d3.max(rows,r=>r.total)],[lw,w-vw]);const yS=d3.scaleBand(rows.map(r=>r.name),[4,h-4]).padding(0.3);
+  const fm=v=>'$'+d3.format('.1f')(v/1e6)+'M';
+  rows.forEach(r=>{txt(svg,lw-8,yS(r.name)+yS.bandwidth()/2+4,r.name,{a:'end',c:'var(--color-fg)'});let x=0;
+   keys.forEach(k=>{if(!r[k[0]])return;svg.append('rect').attr('x',xS(x)).attr('y',yS(r.name)).attr('height',yS.bandwidth()).attr('width',Math.max(1,xS(x+r[k[0]])-xS(x)-1)).attr('fill',k[2]);x+=r[k[0]];});
+   hover(svg.append('rect').datum(r).attr('x',lw).attr('y',yS(r.name)).attr('height',yS.bandwidth()).attr('width',Math.max(4,xS(r.total)-lw)).attr('fill','transparent'),b,r=>[['t',r.name+' · '+r.title],...keys.map(k=>[null,k[1]+': '+fm(r[k[0]])]),[null,'Total: '+fm(r.total)]]);
+   txt(svg,xS(r.total)+5,yS(r.name)+yS.bandwidth()/2+4,fm(r.total),{c:'var(--color-fg)'});});}
  // product priorities
  const pr=document.getElementById('prio');pr.replaceChildren();const pd=dash.data('product_priorities');
  if(pd.status==='ok')pd.data.forEach(r=>{const row=document.createElement('div');row.className='prow';
